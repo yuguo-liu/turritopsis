@@ -1,12 +1,10 @@
-Proof-of-Concept implementation for Dumbo-NG. 
-The code is forked from the implementation of Honeybadger-BFT protocol.
-This codebase also includes PoC implementations for Dumbo, sDumbo, Dumbo-DL.
+Proof-of-Concept implementation for Turritopsis. The code is forked from the implementation of Honeybadger-BFT protocol. This codebase also includes PoC implementations for sDumbo.
 
-1. To run the benchmarks at your machine (with Ubuntu 18.84 LTS), first install all dependencies as follows:
-    ```
+ To run the benchmarks at your machine (with Ubuntu 18.84 LTS), first install all dependencies as follows:
+
     sudo apt-get update
     sudo apt-get -y install make bison flex libgmp-dev libmpc-dev python3 python3-dev python3-pip libssl-dev
-    
+
     wget https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz
     tar -xvf pbc-0.5.14.tar.gz
     cd pbc-0.5.14
@@ -14,14 +12,14 @@ This codebase also includes PoC implementations for Dumbo, sDumbo, Dumbo-DL.
     sudo make
     sudo make install
     cd ..
-    
+
     sudo ldconfig /usr/local/lib
-    
+
     cat <<EOF >/home/ubuntu/.profile
     export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
     EOF
-    
+
     source /home/ubuntu/.profile
     export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
@@ -33,82 +31,104 @@ This codebase also includes PoC implementations for Dumbo, sDumbo, Dumbo-DL.
     sudo make install
     sudo make test
     cd ..
-    
+
     python3 -m pip install --upgrade pip
-    sudo pip3 install gevent setuptools gevent numpy ecdsa pysocks gmpy2 zfec gipc pycrypto coincurve
-    ```
+    sudo pip3 install gevent setuptools gevent numpy ecdsa pysocks gmpy2 zfec gipc pycrypto coincurve phe dill
 
-2. A quick start to run Dumbo/sDumbo for 20 epochs with a batch size of 1000 tx can be:
-   ```
-   ./run_local_network_test.sh 4 1 1000 20
-   ```
-   
-   To run Dumbo-NG, replace line 12 of run_local_network_test.sh with:
-   ```
-   python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --f $2 --B $3 --S 100 --P "ng" --D True --O True --C $4 &
-   ```
-   for running Dumbo-NG with a batch size of 1000tx and a 20-epoch warm up can be:
-   ```
-   ./run_local_network_test.sh 4 1 1000 20
-   ```
-   
-   To run Dumbo-DL, replace line 12 of run_local_network_test.sh with:
-   ```
-   python3 run_sockets_node.py --sid 'sidA' --id $i --N $1 --f $2 --B $3 --K $4 --S 100 --P "dl" --D True --O True &
-   ```
-   for 20 epochs with a batch size of 1000tx can be:
-   ```
-   ./run_local_network_test.sh 4 1 1000 20
-   ```
-   
+A quick start to run Turritopsis for 15 round(1000 txs batch size) with one reconfiguration one node to join&leave can be:
 
-3. If you would like to test the code among AWS cloud servers (with Ubuntu 18.84 LTS). You can follow the commands inside run_local_network_test.sh to remotely start the protocols at all servers. An example to conduct the WAN tests from your PC side terminal can be:
-   ```
-   # the number of remove AWS servers
-   N = 4
-   
-   # public IPs --- This is the public IPs of AWS servers
-    pubIPsVar=([0]='3.236.98.149'
-    [1]='3.250.230.5'
-    [2]='13.236.193.178'
-    [3]='18.181.208.49')
-    
-   # private IPs --- This is the private IPs of AWS servers
-    priIPsVar=([0]='172.31.71.134'
-    [1]='172.31.7.198'
-    [2]='172.31.6.250'
-    [3]='172.31.2.176')
-   
-   # Clone code to all remote AWS servers from github
-    i=0; while [ $i -le $(( N-1 )) ]; do
-    ssh -i "/home/your-name/your-key-dir/your-sk.pem" -o StrictHostKeyChecking=no ubuntu@${pubIPsVar[i]} "git clone --branch release https://github.com/fascy/dumbo-ng.git" &
-    i=$(( i+1 ))
-    done
-   
-   # Update IP addresses to all remote AWS servers 
-    rm tmp_hosts.config
-    i=0; while [ $i -le $(( N-1 )) ]; do
-      echo $i ${priIPsVar[$i]} ${pubIPsVar[$i]} $(( $((200 * $i)) + 10000 )) >> tmp_hosts.config
-      i=$(( i+1 ))
-    done
-    i=0; while [ $i -le $(( N-1 )) ]; do
-      ssh -o "StrictHostKeyChecking no" -i "/home/your-name/your-key-dir/your-sk.pem" ubuntu@${pubIPsVar[i]} "rm /home/ubuntu/dumbo-ng/hosts.config"
-      scp -i "/home/your-name/your-key-dir/your-sk.pem" tmp_hosts.config ubuntu@${pubIPsVar[i]}:/home/ubuntu/dumbo-ng/hosts.config &
-      i=$(( i+1 ))
-    done
-    
-    # Start Protocols at all remote AWS servers
-    i=0; while [ $i -le $(( N-1 )) ]; do   ssh -i "/home/your-name/your-key-dir/your-sk.pem" ubuntu@${pubIPsVar[i]} "export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib; export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib; cd dumbo-ng; nohup python3 run_socket_node.py --sid 'sidA' --id $i --N $N --f $(( (N-1)/3 )) --B 1000 --S 100 --P "ng" --C 20 > node-$i.out" &   i=$(( i+1 )); done
- 
-    # Download logs from all remote AWS servers to your local PC
-    i=0
-    while [ $i -le $(( N-1 )) ]
-    do
-      scp -i "/home/your-name/your-key-dir/your-sk.pem" ubuntu@${pubIPsVar[i]}:/home/ubuntu/dumbo-ng/log/node-$i.log node-$i.log &
-      i=$(( i+1 ))
-    done
- 
-   ```
+    ./run_local_network_test.sh 10 9 2  1 1000 15
+
+To run sDumbo-Mix for 15 round with a batch size of 1000tx, replace line 12 of run_local_network_test.sh with:
+
+    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "sdumbo-dy"  --O True &
+
+    then run:
+
+    ./run_local_network_test.sh 9 9 2 1 1000 15
+
+ To run sDumbo-BFT for 15 round with a batch size of 1000tx can be:
+
+    ./run_local_network_test.sh 9 9 2 0 1000 15
+
+ To run ADKR with secp256k1 only for 15 round, replace line 12 of run_local_network_test.sh with:
+
+    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "adkr"  --O True &
+
+To run ADKR with BN254 only for 15 round, replace line 12 of run_local_network_test.sh with:
+
+    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "adkr"  --O True &
+
+   then run:
+
+    ./run_local_network_test.sh 9 9 2 1 1000 15
+
+If you would like to test the code among AWS cloud servers (with Ubuntu 18.84 LTS). You can follow the commands inside run_local_network_test.sh to remotely start the protocols at all servers. An example to conduct the WAN tests from your PC side terminal can be:
+
+    # the number of remove AWS servers
+    N = 10
+    # node scale is 9 and 1 new node to join 
+    # public IPs --- This is the public IPs of AWS servers
+     # public IPs
+     pubIPsVar=([0]='18.212.40.33'
+     [1]='54.174.146.217'
+     [2]='3.95.161.117'
+     [3]='44.201.240.203'
+     [4]='3.133.145.7'
+     [5]='18.191.29.105'
+     [6]='52.14.198.166'
+     [7]='3.133.150.146'
+     [8]='13.56.115.98'
+     [9]='52.53.241.12')
+
+     
+    # private IPs --- This is the private IPs of AWS servers
+     priIPsVar=([0]='172.31.80.173'
+     [1]='172.31.84.59'
+     [2]='172.31.85.86'
+     [3]='172.31.89.209'
+     [4]='172.31.7.19'
+     [5]='172.31.6.205'
+     [6]='172.31.6.160'
+     [7]='172.31.5.105'
+     [8]='172.31.29.83'
+     [9]='172.31.23.80')
+
+    # Clone code to all remote AWS servers from github
+     i=0; while [ $i -le $(( N-1 )) ]; do
+     ssh -i "/home/your-name/your-key-dir/your-sk.pem" -o StrictHostKeyChecking=no ubuntu@${pubIPsVar[i]} "git clone --branch release https://github.com/fascy/dumbo-ng.git" &
+     i=$(( i+1 ))
+     done
+
+    # Update IP addresses to all remote AWS servers 
+     rm tmp_hosts.config
+     i=0; while [ $i -le $(( N-1 )) ]; do
+       echo $i ${priIPsVar[$i]} ${pubIPsVar[$i]} $(( $((200 * $i)) + 10000 )) >> tmp_hosts.config
+       i=$(( i+1 ))
+     done
+     
+     i=0; while [ $i -le $(( N-1 )) ]; do
+       ssh -o "StrictHostKeyChecking no" -i "/home/your-name/keys/mule-oakland.pem" ubuntu@${pubIPsVar[i]} "cd dynamic; rm hosts.config"
+       scp -i "/home/your-name/keys/mule-oakland.pem" tmp_hosts.config ubuntu@${pubIPsVar[i]}:/home/ubuntu/dynamic/hosts.config &
+       i=$(( i+1 ))
+     done
+
+     
+     # Start Protocols at all remote AWS servers
+     i=0; while [ $i -le $(( N-1 )) ]; do   
+         ssh -i "/home/your-name/keys/mule-oakland.pem" ubuntu@${pubIPsVar[i]} "export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib; export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib; cd dynamic; nohup python3 run_socket_node.py --sid 'sidA' --id $i --N 10 --Ng 9 --f 2 --l 1 --B 1000 --K 30 --recon 20 --P "sdumbo-dy" --O True > node-$i.out" &   
+         i=$(( i+1 )); 
+     done
+
+
+     # Download logs from all remote AWS servers to your local PC
+     i=0
+     while [ $i -le $(( N-1 )) ]
+     do
+       scp -i "/home/your-name/your-key-dir/your-sk.pem" ubuntu@${pubIPsVar[i]}:/home/ubuntu/dumbo-ng/log/node-$i.log node-$i.log &
+       i=$(( i+1 ))
+     done
+
 
 Here down below is the original README.md of HoneyBadgerBFT
 
