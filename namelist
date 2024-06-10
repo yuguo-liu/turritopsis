@@ -1,0 +1,32 @@
+
+high:
+adkr_high_old_node.py
+    adkr_high.py
+        adkr_new.py, adkr_new.py
+
+low:
+adkr_low_old_node.py
+    adkr_low.py
+        adkr_old_hbacss.py, adkr_new_hbacss.py
+
+=====================================
+other protocols
+
+
+high:
+
+[pvss+mvba]
+adkg_adp_high_node.py
+    adkg_adp_high.py
+        adkg_adkr_old.py
+
+[hbacss+random extra+RO call ==>adkr]
+adkr_hbacss_high_node.py
+    adkr_hbacss_high.py
+        high_hbacss_adkr_old.py, high_hbacss_adkr_new.py
+
+[hbacss+random extra ==>adkg]
+adkg_hbacss_high_node.py
+    adkg_hbacss_high.py
+        high_adkg.py
+
