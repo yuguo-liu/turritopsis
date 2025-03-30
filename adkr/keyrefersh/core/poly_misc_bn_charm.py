@@ -1,7 +1,6 @@
 from operator import mul
 from functools import reduce
 from charm.toolbox.pairinggroup import PairingGroup, ZR, G1, G2, pair
-from utils.core.betterpairing import ZR as ZR1
 group = PairingGroup('BN254')
 
 ZERO = group.random(ZR, seed=59)*0
