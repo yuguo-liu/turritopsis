@@ -199,7 +199,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
                 spbc = gevent.spawn(strongprovablebroadcast, sid + 'SPBC' + str(C[j]), pid, N, f, l, C, PK2s, SK2, C[j],
                                     spbc_input, spbc_s1_list[j].put_nowait, spbc_recvs[r][j].get,
                                     make_spbc_send(C[j], r),
-                                    r, logger, spbc_pridict)
+                                    r, logger, spbc_pridict, malicious=malicious)
 
                 spbc_threads[j] = spbc
 

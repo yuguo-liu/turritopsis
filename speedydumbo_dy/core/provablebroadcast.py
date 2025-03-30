@@ -101,7 +101,8 @@ def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_outp
                 reversed_last = last ^ 0x01
                 sig0 = sig_echo[:-1] + bytes([reversed_last])
                 send(leader, ('PB_ECHO', sig0))
-            send(leader, ('PB_ECHO', sig_echo))
+            else:
+                send(leader, ('PB_ECHO', sig_echo))
             if pid != leader:
                 value_output(v)
                 end = time.time()

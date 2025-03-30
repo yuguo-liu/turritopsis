@@ -16,7 +16,7 @@ def hash(x):
 
 
 
-def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, output, receive, send, r, logger=None, predicate=lambda x: True):
+def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, output, receive, send, r, logger=None, predicate=lambda x: True, malicious=0):
     """Consistent broadcast
     :param str sid: session identifier
     :param int pid: ``0 <= pid < N``
@@ -96,7 +96,15 @@ def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, outp
                 continue
             digest1FromLeader = hash(str((sid, m, "ECHO")))
             # print("Node", pid, "has message", m)
-            send(leader, ('SPBC_ECHO', ecdsa_sign(SK2, digest1FromLeader)))
+            sendsig = ecdsa_sign(SK2, digest1FromLeader)
+            if malicious != 0:
+                print(pid, "i am malicious")
+                last = sendsig[-1]
+                reversed_last = last ^ 0x01
+                sendsig0 = sendsig[:-1] + bytes([reversed_last])
+                send(leader, ('SPBC_ECHO', sendsig0))
+            else:
+                send(leader, ('SPBC_ECHO', sendsig))
 
         elif msg[0] == 'SPBC_ECHO':
             # CBC_READY message
@@ -114,7 +122,7 @@ def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, outp
             except AssertionError:
                 print("1-Signature share failed in SPBC!", (r, sid, pid, j, msg))
                 if logger is not None: logger.info("Signature share failed in SPBC! %s %d %d %s" % (sid, pid, j, msg))
-                # continue
+                continue
             cbc_echo_sshares[j] = sig1
             if len(cbc_echo_sshares) == EchoThreshold and not echoSent:
                 sigmas = tuple(list(cbc_echo_sshares.items())[:N - f - l])
@@ -141,7 +149,15 @@ def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, outp
                 print("Ready-Signature failed!", (r, sid, pid, j, msg[2]))
                 # continue
             digest2 = hash(str((sid, m, "FINAL")))
-            send(leader, ('SPBC_FINAL', digest2, ecdsa_sign(SK2, digest2), sid))
+            readysig = ecdsa_sign(SK2, digest2)
+            if malicious != 0:
+                print(pid, "i am malicious")
+                last = readysig[-1]
+                reversed_last = last ^ 0x01
+                readysig0 = readysig[:-1] + bytes([reversed_last])
+                send(leader, ('SPBC_FINAL', digest2, readysig0, sid))
+            else:
+                send(leader, ('SPBC_FINAL', digest2, readysig, sid))
             if output is not None:
 
                 output((sid, pid, m, sigmas))
