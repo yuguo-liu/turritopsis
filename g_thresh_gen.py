@@ -18,7 +18,7 @@ g2.initPP()
 g21 = G21.hash(b'1')
 g11 = G11.hash(b'2')
 print(g11, g21)
-def trusted_key_gen(N=17, f=5, l=0, seed=None):
+def trusted_key_gen(N=17, f=5, l=2, seed=None):
 
     thpk, thpks, thsks = generate_thre_s(N, f)
     thpk2, thpks2, thsks2 = generate_thre_bn(N, f)
