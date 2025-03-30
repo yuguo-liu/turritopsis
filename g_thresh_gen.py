@@ -7,6 +7,7 @@ from adkr.acss.core.polynomial_charm import polynomials_over
 from adkr.acss.core.polynomial_pairing import polynomials_over_BN as polynomials_over_BN_N
 from utils.core.polynomial_pairing_charm import polynomials_over_BN
 from utils.core.betterpairing import G1 as G11, G2  as G21, ZR as ZR1
+
 group = ECGroup(714)
 g = group.hash(123, G)
 group2 = PairingGroup('BN254')
@@ -116,6 +117,8 @@ def trusted_nonthre_key_gen(N=17, f=8):
         SKs.append(ZR1.rand())
         PKs.append(g11 ** SKs[i])
     return PKs, SKs
+
+
 if __name__ == '__main__':
 
     trusted_key_gen()
