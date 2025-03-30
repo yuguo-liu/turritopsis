@@ -24,7 +24,7 @@ def hash(x):
     return hashlib.sha256(x).digest()
 
 
-def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  g, type, dealer, PKs, SK, input, receive, send, logger):
+def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  g, type, dealer, PKs, SK, input, receive, send, logger, malicious=0):
     """ACSS with dcr
 
     :param int pid: ``0 <= pid < N``
@@ -90,13 +90,16 @@ def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  
 
 
 
-    def prove_knowledge_of_encrypted_dlog(g, x, pk, g_to_the_x=None):
+    def prove_knowledge_of_encrypted_dlog(g, x, pk, g_to_the_x=None, malicious=malicious):
         if g_to_the_x is None:
             Y = g ** x
         else:
             Y = g_to_the_x
 
         r = pk.get_random_lt_n()
+        # if malicious != 0:
+        #     c = pk.encrypt(int(x+1), r_value=r).ciphertext(be_secure=False)
+        # else:
         c = pk.encrypt(int(x), r_value=r).ciphertext(be_secure=False)
         # Todo: see if this limitation is libarary-specific. Maybe use a slightly larget N?
         u = pk.get_random_lt_n() // 3  # maximum valid value we can encrypt
@@ -165,7 +168,7 @@ def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  
         # if pid == r % 9 or pid == (r+1) % 9:
         #    outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[0]]) for i in range(N_n)]
         # else:
-        outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[i]]) for i in range(N_n)]
+        outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[i]], malicious=malicious) for i in range(N_n)]
         msg = dumps([[outputs[i][j] for i in range(N_n)] for j in range(3)])
         # logger.info('node %s generate ss %s output' % (pid, dealer))
         for i in range(N_n):

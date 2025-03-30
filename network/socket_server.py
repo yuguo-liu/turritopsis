@@ -61,7 +61,7 @@ class NetworkServer(Process):
                             (j, o) = (jid, pickle.loads(data))
                             # assert j in range(self.N)
                             self.server_to_bft((j, o))
-                            self.logger.info('recv' + str((j, o[0], o[1][1][0])))
+                            # self.logger.info('recv' + str((j, o[0], o[1][1][0])))
                             # print(pid, 'recvaaa msg from' + str((j, o[1][0], o[1][2][0])))
                         else:
                             self.logger.error('syntax error messages')

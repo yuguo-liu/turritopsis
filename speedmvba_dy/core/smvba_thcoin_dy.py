@@ -67,7 +67,7 @@ def recv_loop(pid, recv_func, recv_queues, C, logger):
         gevent.sleep(0)
 
 
-def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, receive, send, predicate, logger=None):
+def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, receive, send, predicate, logger=None, malicious=0):
     """Multi-valued Byzantine consensus. It takes an input ``vi`` and will
     finally writes the decided value into ``decide`` channel.
     :param sid: session identifier
@@ -153,13 +153,13 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
             L = Leaders[round].get()
             if tag == 'yn':
                 hash_e = hash(str((sid + 'SPBC' + str(L), msg, "ECHO")))
-                try:
-                    for (k, sig_k) in proof:
+                for (k, sig_k) in proof:
+                    try:
                         assert ecdsa_vrfy(PK2s[k], hash_e, sig_k)
-                except AssertionError:
-                    # if logger is not None: logger.info("sig L verify failed!")
-                    print("sig L verify failed!")
-                    return -1
+                    except AssertionError:
+                        # if logger is not None: logger.info("sig L verify failed!")
+                        print("sig L verify failed!")
+                        return -1
                 return 1
             if tag == 'no':
                 digest_no_no = hash(str((sid, L, r - 1, 'vote')))
@@ -343,7 +343,15 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
             else:
                 digest_no = hash(str((sid, Leader, r, 'pre')))
                 # digest_no = PK1.hash_message(str((sid, Leader, r, 'pre')))
-                prevote = (Leader, 0, "bottom", ecdsa_sign(SK2, digest_no))
+                prevotesig = ecdsa_sign(SK2, digest_no)
+
+                if malicious != 0:
+                    last = prevotesig[-1]
+                    reversed_last = last ^ 0x01
+                    prevotesig0 = prevotesig[:-1] + bytes([reversed_last])
+                    prevote = (Leader, 0, "bottom", prevotesig0)
+                else:
+                    prevote = (Leader, 0, "bottom",prevotesig)
                 # prevote = (Leader, 0, "bottom", SK1.sign(digest_no))
                 # if pid == 1: print(pid, sid, "prevote no in round ", r)
             broadcast(('MVBA_ABA', r, r, ('prevote', prevote)))
@@ -357,7 +365,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
             def vote_loop():
 
                 nonlocal hasOutputed, r
-
+                okay_to_stop.clear()
                 hasVoted = False
                 while not hasOutputed and not okay_to_stop.is_set() and not start_wait_for_halt.is_set():
                     # gevent.sleep(0)
@@ -386,6 +394,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
                                     sigmas_no = tuple(list(prevote_no_shares.items())[:N - f - l])
                                     digest_no_no = hash(str((sid, Leader, r, 'vote')))
                                     vote = (Leader, 0, "bottom", sigmas_no, ecdsa_sign(SK2, digest_no_no))
+
                                     broadcast(('MVBA_ABA', r, r, ('vote', vote)))
                                     # print(pid, "vote no in round", r)
                                     # if pid ==3: print("VOTE 0")
@@ -402,7 +411,14 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
                                     # print("pre-vote Signature failed!")
                                     pass
                                 pii = hash(str((sid + 'SPBC' + str(Leader), vote_msg[2], "FINAL")))
-                                vote = (Leader, 1, vote_msg[2], vote_msg[3], ecdsa_sign(SK2, pii))
+                                votesig = ecdsa_sign(SK2, pii)
+                                if malicious !=0:
+                                    last = votesig[-1]
+                                    reversed_last = last ^ 0x01
+                                    votesig0 = votesig[:-1] + bytes([reversed_last])
+                                    vote = (Leader, 1, vote_msg[2], vote_msg[3], votesig0)
+                                else:
+                                    vote = (Leader, 1, vote_msg[2], vote_msg[3], votesig)
                                 broadcast(('MVBA_ABA', r, r, ('vote', vote)))
                                 # if pid ==3: print("VOTE 1")
                                 hasVoted = True
@@ -427,8 +443,8 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
                                 except AssertionError:
                                     # if logger is not None: logger.info("vote Signature failed!")
                                     print("vote Signature failed!")
-                                    # continue
-                                    pass
+                                    continue
+                                    # pass
 
                                 vote_yes_shares[sender] = vote_msg[4]
                                 vote_yes_msg = vote_msg[2]
@@ -477,7 +493,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
                                 except AssertionError:
                                     if logger is not None: logger.info("vote no failed!")
                                     print("vote no failed!, digest_no_no, in round", r)
-                                    pass
+                                    continue
 
                                 vote_no_shares[sender] = vote_msg[4]
 
@@ -521,6 +537,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty, input, decide, 
 
             gevent.spawn(vote_loop)
             okay_to_stop.wait()
+            okay_to_stop.clear()
 
 
     view_change_thred = gevent.Greenlet(views)

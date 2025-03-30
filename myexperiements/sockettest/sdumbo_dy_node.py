@@ -1,6 +1,7 @@
 from gevent import monkey; monkey.patch_all(thread=False)
 
 import random
+import numpy as np
 from typing import  Callable
 import os
 import pickle
@@ -12,9 +13,11 @@ from coincurve import PrivateKey, PublicKey
 from charm.toolbox.ecgroup import ECGroup, G, ZR
 from adkr.acss.core.polynomial_charm import polynomials_over
 group = ECGroup(714)
+import hashlib, pickle
+def hash(x):
+    return hashlib.sha256(pickle.dumps(x)).digest()
 
 def load_key(id, N_all, N_g, l):
-
     sPK2s = []
     for i in range(N_all):
         with open(os.getcwd() + '/keys-' + str(N_g) + '/' + 'sPK2-' + str(i) + '.key', 'rb') as fp:
@@ -46,7 +49,7 @@ def load_key(id, N_all, N_g, l):
 
 class SDumboDYNode (SpeedyDumbo):
 
-    def __init__(self, sid, id, B, l, f, N_g, N, reconfig, bft_from_server: Callable, bft_to_client: Callable, ready: mpValue, stop: mpValue, K=3, mode='debug', mute=False, debug=False, tx_buffer=None):
+    def __init__(self, sid, id, B, l, f, N_g, N, reconfig, bft_from_server: Callable, bft_to_client: Callable, ready: mpValue, stop: mpValue, K=3, m=0, mode='debug', mute=False, debug=False, tx_buffer=None):
         self.sPK2s, self.ePKs, self.sSK2, self.eSK, self.thsk, self.thpks, self.thpk = load_key(id, N, N_g, l)
         print(len(self.sPK2s))
         self.g = group.hash(123, G)
@@ -61,6 +64,7 @@ class SDumboDYNode (SpeedyDumbo):
         self.N = N
         self.l_g = int(l)
         self.f_g = f
+        self.malicious = 0
         print(N_g, self.f_g, self.l_g)
         self.recon = reconfig
         B_m = (self.l_g) * 2
@@ -73,13 +77,13 @@ class SDumboDYNode (SpeedyDumbo):
         print(l_num, type(l_num))
         self.add_list = []
         self.leave_list = []
-        t = int(K / self.recon) + 1
-        for i in range(N_g, N_g + l_num * t + 1):
+        t = int(K / self.recon)
+        for i in range(N_g, N_g + l_num * t):
             self.add_list.append(i)
         C_t = []
         for item in self.C_g:
             C_t.append(item)
-        for i in range(l_num * t + 1):
+        for i in range(l_num * t):
             C_t.append(N_g + i)
             self.leave_list.append(C_t[0])
             C_t.remove(C_t[0])
@@ -87,14 +91,33 @@ class SDumboDYNode (SpeedyDumbo):
         print(self.add_list)
         print(self.leave_list)
         print("debug is ", debug)
+        if m > 0:
+            a = hash(m)
+            np.random.seed(int.from_bytes(a, byteorder='big') % 1000)
+
+            c_old = [i for i in range(N_g)]
+            c_new = [i + l for i in range(N_g)]
+            pi = np.random.permutation([i for i in c_old])
+            l_node = [i for i in range(l)]
+            print("malicious in old", pi[:f])
+            count = 0
+            for i in pi[:f]:
+                if i in l_node:
+                    count += 1
+            pi2 = np.random.permutation([i for i in list(set(c_new) - set(c_old))])
+            print("malicious in old", pi2[:(count)])
+            if id in pi[:f] or id in pi2[:(count)]:
+                self.malicious = 1
+                print("i am malicious", id)
+
         if id in self.C_g:
             SpeedyDumbo.__init__(self, sid, id, B, B_m, l, f, self.C_g, self.N, reconfig, self.leave_list, self.g, 's',
                              self.sPK2s, self.sSK2, self.ePKs, self.eSK, self.thpk, self.thpks, self.thsk,
-                             self.send, self.recv, K=K, mute=mute, debug=debug)
+                             self.send, self.recv, K=K, mute=mute, debug=debug, malicious=self.malicious)
         else:
             SpeedyDumbo.__init__(self, sid, id, B, B_m, l, f, self.C_g, self.N, reconfig, self.leave_list, self.g, 's',
                              self.sPK2s, self.sSK2, self.ePKs, self.eSK, 0, 0, 0,
-                             self.send, self.recv, K=K, mute=mute, debug=debug)
+                             self.send, self.recv, K=K, mute=mute, debug=debug, malicious=self.malicious)
     def prepare_bootstrap(self):
         self.logger.info('node id %d is inserting dummy payload TXs' % (self.id))
         if self.mode == 'test' or 'debug': #K * max(Bfast * S, Bacs)

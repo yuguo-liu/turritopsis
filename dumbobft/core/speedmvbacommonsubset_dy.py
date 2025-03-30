@@ -41,7 +41,7 @@ def vacs_msg_receiving_loop(recv_func, recv_queues):
             traceback.print_exc(e)
 
 
-def speedmvbacommonsubset(sid, pid, C, r, reconfig, N, f, l, last_pb_proof, PK2s, SK2, epks, esk, g, ty, input, decide, left_decide, receive, send, predicate=lambda i, v, t: True, logger=None):
+def speedmvbacommonsubset(sid, pid, C, r, reconfig, N, f, l, last_pb_proof, PK2s, SK2, epks, esk, g, ty, input, decide, left_decide, receive, send, predicate=lambda i, v, t: True, logger=None, malicious=0):
     """Validated vector consensus. It takes an input ``vi`` and will
     finally writes the decided value (i.e., a vector of different nodes' vi) into ``decide`` channel.
     Each vi is validated by a predicate function predicate(i, vi)
@@ -128,7 +128,7 @@ def speedmvbacommonsubset(sid, pid, C, r, reconfig, N, f, l, last_pb_proof, PK2s
 
 
     vaba = gevent.spawn(speedmvba, sid + 'VACS-VABA', pid, N, f, l, C, PK2s, SK2, epks, esk, g, ty,
-                        vaba_input.get, vaba_output.put_nowait, vaba_recv.get, make_vaba_send(), make_vaba_predicate(), logger)
+                        vaba_input.get, vaba_output.put_nowait, vaba_recv.get, make_vaba_send(), make_vaba_predicate(), logger, malicious)
 
     """ 
     """

@@ -523,6 +523,7 @@ def speedmvba(sid, pid, N, f, l, C, PK2s, SK2, ePKs, eSK, g, ty, input, decide, 
 
             gevent.spawn(vote_loop)
             okay_to_stop.wait()
+            okay_to_stop.clear()
 
     view_change_thred = gevent.Greenlet(views)
     view_change_thred.start()

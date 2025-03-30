@@ -11,7 +11,7 @@ import hashlib, pickle
 def hash(x):
     return hashlib.sha256(pickle.dumps(x)).digest()
 
-def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_output, recv, send, logger=None):
+def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_output, recv, send, logger=None, malicious=0):
     """provablebroadcast
     :param str sid: session identifier
     :param int pid: ``0 <= pid < N``
@@ -72,7 +72,8 @@ def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_outp
         assert isinstance(m, (str, bytes, list, tuple))
         digestFromLeader = hash((sid, hash(m)))
         # print("leader", pid, "has digest:", digestFromLeader)
-        cbc_echo_sshares[pid] = ecdsa_sign(SK2, digestFromLeader)
+        sig = ecdsa_sign(SK2, digestFromLeader)
+        cbc_echo_sshares[pid] = sig
         value_output(m)
         broadcast(('PB_SEND', m))
         # print("Leader %d broadcasts CBC SEND messages" % leader)
@@ -93,7 +94,14 @@ def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_outp
                 continue
             digestFromLeader = hash((sid, hash(v)))
             # print("Node", pid, "has digest for leader", leader, "session id", sid)
-            send(leader, ('PB_ECHO', ecdsa_sign(SK2, digestFromLeader)))
+            sig_echo = ecdsa_sign(SK2, digestFromLeader)
+            if malicious != 0:
+                print(pid, "i am malicious")
+                last = sig_echo[-1]
+                reversed_last = last ^ 0x01
+                sig0 = sig_echo[:-1] + bytes([reversed_last])
+                send(leader, ('PB_ECHO', sig0))
+            send(leader, ('PB_ECHO', sig_echo))
             if pid != leader:
                 value_output(v)
                 end = time.time()

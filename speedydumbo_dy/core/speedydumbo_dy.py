@@ -112,7 +112,7 @@ class SpeedyDumbo():
     :param K: a test parameter to specify break out after K rounds
     """
 
-    def __init__(self, sid, pid, B, B_m, l, f, C_g, N_all, reconfig, l_list, g1, ec, sPK2s, sSK2, ePK, eSK, thpk, thpks, thsk, send,recv, K=3, mute=False, debug=None):
+    def __init__(self, sid, pid, B, B_m, l, f, C_g, N_all, reconfig, l_list, g1, ec, sPK2s, sSK2, ePK, eSK, thpk, thpks, thsk, send,recv, K=3, m=0, mute=False, debug=None, malicious=0):
         self.sid = sid
         self.id = pid
         self.B = B
@@ -167,6 +167,9 @@ class SpeedyDumbo():
         self.l_list = l_list
         self.g1 = g1
         self.N_all  = N_all
+        self.malicious = malicious
+
+
         if self.id in C_g:
             self.thesk = thsk
             self.thepk = thpk
@@ -262,7 +265,7 @@ class SpeedyDumbo():
                             self.configchain[c] = script[3]
                             (pk_shares_s, share_e, thpk_s, C_n) = script
                             thpk = group.deserialize(thpk_s)
-                            assert thpk == self.g1 ** (self.f_g+1)
+                            # assert thpk == self.g1 ** (self.f_g+1)
                             pk_shares = []
                             for itme in pk_shares_s:
                                 pk_shares.append([itme[0], group.deserialize(itme[1])])
@@ -555,7 +558,7 @@ class SpeedyDumbo():
             pb_thread = gevent.spawn(provablebroadcast, sid+'PB'+str(r)+str(C[j]), pid, C,
                                      N, f, l, self.sPK2s, self.sSK2, C[j], pb_input,
                                      self.pb_value_outputs[r][j].put_nowait,
-                                     recv=pb_recvs[j].get, send=pb_send, logger=None)
+                                     recv=pb_recvs[j].get, send=pb_send, logger=None, malicious=self.malicious)
 
             def wait_for_pb_proof():
                 proof = pb_thread.get()
@@ -616,13 +619,13 @@ class SpeedyDumbo():
             vacs_thread = Greenlet(speedmvbacommonsubset, sid + 'VACS' + str(r), pid, C, r, self.reconfig, N, f, l, self.last_pb_proof,
                                self.sPK2s, self.sSK2, self.thepks, self.thesk, self.g1, 's',
                                vacs_input.get, vacs_output.put_nowait, left_output.put_nowait,
-                               vacs_recv.get, vacs_send, vacs_predicate, logger=self.logger)
+                               vacs_recv.get, vacs_send, vacs_predicate, logger=self.logger, malicious=self.malicious)
         else:
             vacs_thread = Greenlet(speedmvbacommonsubset, sid + 'VACS' + str(r), pid, C, r, self.reconfig, N, f, l,
                                    self.last_pb_proof,
                                    self.sPK2s, self.sSK2, self.thepks, self.thesk, self.g1, 's',
                                    vacs_input.get, vacs_output.put_nowait, left_output.put_nowait,
-                                   vacs_recv.get, vacs_send, vacs_predicate, logger=None)
+                                   vacs_recv.get, vacs_send, vacs_predicate, logger=None, malicious=self.malicious)
         vacs_thread.start()
 
         # One instance of TPKE
@@ -751,12 +754,12 @@ class SpeedyDumbo():
                 if self.debug:
                     gevent.spawn(ADKR_old_c, sid + 'ADKR' + str(r), pid, self.configchain, self.l_n, self.f_g, r, self.g1, self.ec,
                              self.sPK2s, self.sSK2,
-                             self.ePKS, self.eSK, self.thesk, 0, self.thepks, adkr_output.put_nowait, adkr_send, adkr_recv.get, logger=self.logger)
+                             self.ePKS, self.eSK, self.thesk, 0, self.thepks, adkr_output.put_nowait, adkr_send, adkr_recv.get, logger=self.logger, malicious=self.malicious)
                 else:
                     gevent.spawn(ADKR_old_c, sid + 'ADKR' + str(r), pid, self.configchain, self.l_n, self.f_g, r,
                                  self.g1, self.ec,
                                  self.sPK2s, self.sSK2,
-                                 self.ePKS, self.eSK, self.thesk, 0, self.thepks, adkr_output.put_nowait, adkr_send, adkr_recv.get)
+                                 self.ePKS, self.eSK, self.thesk, 0, self.thepks, adkr_output.put_nowait, adkr_send, adkr_recv.get, malicious=self.malicious)
             (script, Sigma) = adkr_output.get()
 
             adkr_e_time = time.time()

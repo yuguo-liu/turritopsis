@@ -70,7 +70,7 @@ def broadcast_receiver_loop(recv_func, recv_queues, logger):
             traceback.print_exc(e)
 
 
-def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, eSK, thsk_o, thpk_o, thpks_o, output, send, recv, logger=None):
+def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, eSK, thsk_o, thpk_o, thpks_o, output, send, recv, logger=None, malicious=0):
     """AKDR object used to run the protocol.
 
     :param str sid: The base name of the common coin that will be used to
@@ -180,7 +180,7 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
                 my_acss_input.put_nowait(secret_r)
             acss_thread = gevent.spawn(completesecretsharing, sid+'ACSS'+str(C_o[j]), pid, round,
                                      N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n, g, type, C_o[j], ePKs, eSK, acss_input,
-                                     receive=acss_recvs[j].get, send=acss_send, logger=logger)
+                                     receive=acss_recvs[j].get, send=acss_send, logger=logger, malicious=malicious)
 
             def wait_for_acss_output():
                 comms, encryptions, proofs = acss_thread.get()
@@ -249,14 +249,17 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
             vaba_input.put_nowait(t)
             out, localset = vaba_output.get()
             # print(r, "vaba_output:", out)
+            T = set()
             for i in out:
                 if C_o[i] == pid:
                     continue
                 else:
                     if not predicate(C_o[i], acss_value_outputs[i][0], acss_value_outputs[i][1], acss_value_outputs[i][2]):
-                        print("wrong one in out")
-                        return 'w', C_o[i], localset
-            return 'r', out, 0
+                        print("wrong one in out", C_o[i])
+                    else:
+                        T.add(C_o[i])
+                        # return 'w', C_o[i], localset
+            return 'r', T, 0
         r = 0
         ls = None
         while True:
@@ -298,7 +301,7 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
 
             digest = hash(str(thpk) + str(C_n))
             script = (pk_shares_s, share_e, group.serialize(thpk), C_n)
-            # assert thpk == g ** (f_o+1)
+            assert thpk == g ** (len(out))
             sigma = ecdsa_sign(sSK2, digest)
             for i in C_o:
                 send(i, ('ADKR_CONFIG', 0, (script, sigma)))
@@ -307,7 +310,7 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
         elif type == 'b':
 
             thpk = interpolate_g1_at_x(pk_shares[:f_o + 1], 0, group.init(G1))
-            # assert thpk == g ** (f_o + 1)
+            assert thpk == g ** (len(out))
             digest = hash2(str(thpk))
             digest2 = hash2(str(thpk) + str(C_n))
             script = (pk_shares_s, share_e, group.serialize(thpk), C_n)

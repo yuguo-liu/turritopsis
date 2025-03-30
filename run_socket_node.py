@@ -22,14 +22,15 @@ from ctypes import c_bool
 from charm.toolbox.ecgroup import ECGroup,G
 group = ECGroup(714)
 def instantiate_bft_node(sid, i, B, N, N_g, l, recon, f, K, bft_from_server: Callable, bft_to_client: Callable, ready: mpValue,
-                         stop: mpValue, protocol="sdumbo-dy", mute=False, F=100, debug=False, omitfast=False, countpoint=0):
+                         stop: mpValue, protocol="sdumbo-dy", mute=False, F=100, debug=False, omitfast=False, countpoint=0, m=0):
     bft = None
+    print("m=", m)
     # if protocol == 'dumbo':
     #     bft = DumboBFTNode(sid, i, B, N, f, bft_from_server, bft_to_client, ready, stop, K, mute=mute, debug=debug)
     if protocol == 'sdumbo':
         bft = SDumboBFTNode(sid, i, B, N, f, bft_from_server, bft_to_client, ready, stop, K, mute=mute, debug=debug)
     elif protocol == 'sdumbo-dy':
-        bft = SDumboDYNode(sid, i, B, l, f, N_g, N, recon, bft_from_server, bft_to_client, ready, stop, K, mute=mute, debug=debug)
+        bft = SDumboDYNode(sid, i, B, l, f, N_g, N, recon, bft_from_server, bft_to_client, ready, stop, K, m, mute=mute, debug=debug)
     elif protocol == 'adkr':
         bft = ADKRNode(sid, i, B, l, f, N_g, N, recon, bft_from_server, bft_to_client, ready, stop, K, mute=mute, debug=debug)
     elif protocol == 'adkr-bn':
@@ -79,6 +80,8 @@ if __name__ == '__main__':
                         help='whether to omit the fast path', type=bool, default=False)
     parser.add_argument('--C', metavar='C', required=False,
                         help='point to start measure tps and latency', type=int, default=0)
+    parser.add_argument('--m', metavar='m', required=False,
+                       help='malicious behavior(m=0 for close and random m>0 for open)', type=int, default=0)
     args = parser.parse_args()
 
     # Some parameters
@@ -98,6 +101,7 @@ if __name__ == '__main__':
     D = args.D
     O = args.O
     C = args.C
+    m = args.m
     # r = args.r
 
     # Random generator
@@ -143,7 +147,7 @@ if __name__ == '__main__':
         net_server = NetworkServer(my_address[1], my_address[0], i, addresses, server_to_bft, server_ready, stop)
         print("here debug = ", D)
         print("here N = ", N)
-        bft = instantiate_bft_node(sid, i, B, N, N_g, l, recon, f, K, bft_from_server, bft_to_client, net_ready, stop, P, M, F, D, O, C)
+        bft = instantiate_bft_node(sid, i, B, N, N_g, l, recon, f, K, bft_from_server, bft_to_client, net_ready, stop, P, M, F, D, O, C, m)
 
         net_server.start()
         net_client.start()
