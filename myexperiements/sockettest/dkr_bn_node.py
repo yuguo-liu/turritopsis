@@ -9,10 +9,10 @@ from adkr.keyrefersh.core.n_adkr_bn import Adkrround
 from myexperiements.sockettest.make_random_tx import tx_generator
 from multiprocessing import Value as mpValue
 from coincurve import PrivateKey, PublicKey
-from charm.toolbox.pairinggroup import PairingGroup, G1, G2, ZR
 from adkr.acss.core.polynomial_charm import polynomials_over
-group = PairingGroup('BN254')
-
+# from charm.toolbox.pairinggroup import PairingGroup, ZR, G1, G2, pair
+from utils.core.betterpairing import G1, G2, ZR, pair
+from utils.core.serializer import serialize, deserialize
 def load_key(id, N_all, N_g):
 
     sPK2s = []
@@ -32,15 +32,15 @@ def load_key(id, N_all, N_g):
     thsk = 0
     if id < N_g:
         with open(os.getcwd() + '/keys-' + str(N_g) + '/' + 'thSK2-' + str(id) + '.key', 'rb') as fp:
-            thsk = group.deserialize(pickle.load(fp))
+            thsk = (pickle.load(fp))
 
     with open(os.getcwd() + '/keys-' + str(N_g) + '/' + 'thPK2-' + '.key', 'rb') as fp:
-        thpk = group.deserialize(pickle.load(fp))
+        thpk = (pickle.load(fp))
 
     thpks = []
     for i in range(N_g):
         with open(os.getcwd() + '/keys-' + str(N_g) + '/' + 'thPK2-' + str(i) + '.key', 'rb') as fp:
-            thpks.append([(i+1), group.deserialize(pickle.load(fp))])
+            thpks.append([(i+1), (pickle.load(fp))])
 
     return sPK2s, ePKs, sSK2, eSK, thsk, thpks, thpk
 
@@ -64,11 +64,8 @@ class ADKRBNNode (Adkrround):
         self.recon = reconfig
         B_m = self.l_g * 2
 
-        g1 = group.deserialize(b'1:If6Twx6TSz+MkjMqbBaM8hMRMa5KbNfPgsHzJWcVxo4A')
-        g1.initPP()
-        g2 = group.deserialize(
-            b'2:BB7S0EzUecv5S+ULwaHA6YS7SVQLSUsD9EPrNdt0ZuoBj6iA7b7R5q0OiNsk28D0/iMgOmHu8H4L1gIAxRTMiAA=')
-        g2.initPP()
+        g2 = G2.hash(b'1')
+        g1 = G1.hash(b'2')
         for i in range(N_g):
             self.C_g.append(i)
         print(self.C_g)

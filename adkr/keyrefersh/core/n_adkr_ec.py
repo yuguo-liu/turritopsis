@@ -347,7 +347,7 @@ class Adkrround():
                         self.configchain[c+1] = C_n
                         # self.configchain[c] = script[3]
                         thpk = group.deserialize(thpk_s)
-                        assert thpk == self.g1 ** (self.f_g + 1)
+                        # assert thpk == self.g1 ** (self.f_g + 1)
                         pk_shares = []
                         for itme in pk_shares_s:
                             pk_shares.append([itme[0], group.deserialize(itme[1])])

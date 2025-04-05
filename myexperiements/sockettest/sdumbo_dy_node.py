@@ -34,15 +34,15 @@ def load_key(id, N_all, N_g, l):
         eSK = pickle.load(fp)
     thsk = 0
     if id < N_g:
-        with open(os.getcwd() + '/keys-' + str(N_g) + '-' + str(l) + '/' + 'thSK1-' + str(id) + '.key', 'rb') as fp:
+        with open(os.getcwd() + '/keys-' + str(N_g) +  '/' + 'thSK1-' + str(id) + '.key', 'rb') as fp:
             thsk = group.deserialize(pickle.load(fp))
 
-    with open(os.getcwd() + '/keys-' + str(N_g) + '-' + str(l) + '/' + 'thPK1-' + '.key', 'rb') as fp:
+    with open(os.getcwd() + '/keys-' + str(N_g) + '/' + 'thPK1-' + '.key', 'rb') as fp:
         thpk = group.deserialize(pickle.load(fp))
 
     thpks = []
     for i in range(N_g):
-        with open(os.getcwd() + '/keys-' + str(N_g) + '-' + str(l) + '/' + 'thPK1-' + str(i) + '.key', 'rb') as fp:
+        with open(os.getcwd() + '/keys-' + str(N_g)  + '/' + 'thPK1-' + str(i) + '.key', 'rb') as fp:
             thpks.append([(i+1), group.deserialize(pickle.load(fp))])
 
     return sPK2s, ePKs, sSK2, eSK, thsk, thpks, thpk

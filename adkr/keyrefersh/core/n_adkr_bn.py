@@ -26,9 +26,8 @@ import hashlib
 import dill
 import statistics
 # from charm.toolbox.ecgroup import ECGroup
-from charm.toolbox.pairinggroup import PairingGroup, G1, G2, ZR, pair
-
-group = PairingGroup('BN254')
+from utils.core.betterpairing import G1, G2, ZR, pair
+from utils.core.serializer import serialize, deserialize
 def set_consensus_log(id: int):
     logger = logging.getLogger("consensus-node-"+str(id))
     logger.setLevel(logging.DEBUG)
@@ -75,13 +74,6 @@ def broadcast_receiver_loop(recv_func, recv_queues, C):
         except AttributeError as e:
             print("error", sender, (tag, j, msg))
             traceback.print_exc(e)
-
-def hash2(m):
-    try:
-        m = m.encode()
-    except:
-        pass
-    return group.hash(m, G2)
 
 class Adkrround():
     """Dumbo object used to run the protocol.
@@ -134,6 +126,7 @@ class Adkrround():
         self.ePKS = ePK
         self.eSK = eSK
         self.thepks = 0
+
         self.thepk = 0
         self.thesk = 0
         self._send = send
@@ -168,6 +161,7 @@ class Adkrround():
             self.thesk = thsk
             self.thepk = thpk
             self.thepks = thpks
+            print("here", thpks[0])
         self.thpk_g = thpk
 
 
@@ -334,26 +328,26 @@ class Adkrround():
 
 
                         # self.configchain[c] = script[3]
-                        thpk = group.deserialize(thpk_s)
-                        Sigma = group.deserialize(Sigma_s)
-                        digest = hash2(str(thpk))
+                        thpk = deserialize(thpk_s)
+                        Sigma = deserialize(Sigma_s)
+                        digest = G2.hash(serialize(thpk))
                         # assert thpk == self.g1 ** (self.f_g + 1)
                         if c == 0:
                             assert pair(self.g1, Sigma) == pair(self.thpk_g, digest)
                         else:
-                            thpko = group.deserialize(self.proofchain[c-1][0])
+                            thpko = deserialize(self.proofchain[c-1][0])
                             assert pair(self.g1, Sigma) == pair(thpko, digest)
                         self.proofchain[c] = proof_chain[c]
                         # self.configchain[c+self.reconfig] = C_n
                         if c == round:
 
-                            Sigma2 = group.deserialize(Sigma2_s)
-                            digest2 = group.deserialize(digest2_s)
-                            d2 = hash2(str(thpk) + str(C_n))
+                            Sigma2 = deserialize(Sigma2_s)
+                            digest2 = deserialize(digest2_s)
+                            # d2 = G2.hash(str(thpk) + str(C_n))
                             if c == 0:
                                 assert pair(self.g1, Sigma2) == pair(self.thpk_g, digest2)
                             else:
-                                thpko = group.deserialize(self.proofchain[c - 1][0])
+                                thpko = deserialize(self.proofchain[c - 1][0])
                                 assert pair(self.g1, Sigma2) == pair(thpko, digest2)
                             self.C_o = C_n
                             self.configchain[c + 1] = C_n
@@ -364,7 +358,7 @@ class Adkrround():
                     share_m = self.eSK.raw_decrypt(share_e[self.C_o.index(self.id)])
                     pk_shares = []
                     for itme in pk_shares_s:
-                        pk_shares.append([itme[0], group.deserialize(itme[1])])
+                        pk_shares.append([itme[0], deserialize(itme[1])])
                     self.thepks = pk_shares
                     self.thepk = thpk
                     self.thesk = share_m
@@ -438,9 +432,9 @@ class Adkrround():
                          self.ePKS, self.eSK, self.thesk, self.thepk, self.thepks, adkr_output.put_nowait, adkr_send, adkr_recv.get)
 
         (((thpk_s, Sigma), pk_shares_s, share_e, C_n, Sigma2, digest2)) = adkr_output.get()
-        digest2_s = group.serialize(digest2)
-        Sigma_s = group.serialize(Sigma)
-        Sigma2_s = group.serialize(Sigma2)
+        digest2_s = serialize(digest2)
+        Sigma_s = serialize(Sigma)
+        Sigma2_s = serialize(Sigma2)
         self.proofchain[r] = (thpk_s, Sigma_s)
         con_new = (pk_shares_s, share_e, C_n, Sigma2_s, digest2_s)
         self.script_output[r+1].put_nowait((r, dill.dumps(self.proofchain), dill.dumps(con_new)))

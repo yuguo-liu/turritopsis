@@ -16,8 +16,8 @@ from collections import defaultdict
 from gevent.event import Event
 from honeybadgerbft.exceptions import UnknownTagError
 from charm.toolbox.ecgroup import ECGroup, G, ZR
-from charm.toolbox.pairinggroup import PairingGroup, ZR, G1, G2, pair
-
+from utils.core.betterpairing import G1, G2, ZR, pair
+from utils.core.serializer import serialize, deserialize
 from adkr.keyrefersh.core.poly_misc_charm import interpolate_g_at_x
 from adkr.keyrefersh.core.poly_misc_bn import interpolate_g1_at_x, lagrange
 from adkr.acss.core.completesecretsharing_charm import completesecretsharing
@@ -96,14 +96,7 @@ def ADKR_old_c(sid, pid, config_chain, l, f, r, g, type, sPK2s, sSK2, ePKs, eSK,
     """
     if type == 's':
         group = ECGroup(714)
-    elif type == 'b':
-        group = PairingGroup('BN254')
-    def hash2(m):
-        try:
-            m = m.encode()
-        except:
-            pass
-        return group.hash(m, G2)
+
     C_o = config_chain[r]
     C_n = config_chain[r+1]
     N_o = len(C_o)
@@ -232,7 +225,7 @@ def ADKR_old_c(sid, pid, config_chain, l, f, r, g, type, sPK2s, sSK2, ePKs, eSK,
             if type == 's':
                 commit[i] = group.init(G)
             elif type == 'b':
-                commit[i] = group.init(G1)
+                commit[i] = G1.identity()
             encn = ePKs[C_n[i]].encrypt(int(0))
             share_e[i] = encn.ciphertext(be_secure=False)
             for j in out:
@@ -254,13 +247,13 @@ def ADKR_old_c(sid, pid, config_chain, l, f, r, g, type, sPK2s, sSK2, ePKs, eSK,
 
         elif type == 'b':
 
-            thpk = interpolate_g1_at_x(pk_shares[:f_o + 1], 0, group.init(G1))
+            thpk = interpolate_g1_at_x(pk_shares[:f_o + 1], 0, G1.identity())
             assert thpk == g ** (f_o + 1)
-            digest = hash2(str(thpk) + str(C_n))
-            script = (pk_shares_s, share_e, group.serialize(thpk), C_n)
+            digest = G2.hash(str(thpk) + str(C_n))
+            script = (pk_shares_s, share_e, serialize(thpk), C_n)
             sigma = digest ** thsk_o
             for i in C_o:
-                send(i, ('ADKR_CONFIG', 0, (script, group.serialize(sigma))))
+                send(i, ('ADKR_CONFIG', 0, (script, serialize(sigma))))
         # print(pid, "get pkshares:", pk_shares)
 
 
@@ -325,14 +318,14 @@ def ADKR_old_c(sid, pid, config_chain, l, f, r, g, type, sPK2s, sSK2, ePKs, eSK,
                         print("wrong sig!")
                         continue
                 elif type == 'b':
-                    sigma_d = group.deserialize(sigma)
-                    digest = hash2(str(thpk) + str(C_n))
+                    sigma_d = deserialize(sigma)
+                    digest = G2.hash(str(thpk) + str(C_n))
                     # print(thpk)
                     if pair(g, sigma_d) == pair(thpks_o[C_o.index(sender)][1], digest):
                         print(pid, 'verify', sender, 'right')
                         pk_digest_bn[digest].append([sender, sigma_d])
                         if len(pk_digest_bn[digest]) == f_o + 1:
-                            Sigma = interpolate_g1_at_x(pk_digest_bn[digest][:f_o + 1], 0, group.init(G2))
+                            Sigma = interpolate_g1_at_x(pk_digest_bn[digest][:f_o + 1], 0, G2.identity())
                             print(pid, 'Sigma', Sigma)
                             assert thpk == g ** 2
                             # assert Sigma == digest ** 2

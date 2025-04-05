@@ -58,7 +58,6 @@ def thresholdcoin_bn(sid, pid,  N, f, l, C, g1, v, PKs, SK, receive, send):
 
         g_e = G1.hash(dumps(int(v)))
         # g_e = G1.hash(dumps(C))
-        print(g_e)
         g_i_e = g_e ** sk
         s = ZR.rand()
         # s = ZR.rand()
@@ -78,6 +77,7 @@ def thresholdcoin_bn(sid, pid,  N, f, l, C, g1, v, PKs, SK, receive, send):
         try:
             # assert c == group.hash(dumps([group.serialize(g), group.serialize(pk), group.serialize(h),
             #                           group.serialize(g_e), group.serialize(g_i_e), group.serialize(h_e)]), ZR)
+
             assert h == (g ** z) / (pk ** c)
         except Exception as e:
             traceback.print_exc(e)
@@ -85,7 +85,7 @@ def thresholdcoin_bn(sid, pid,  N, f, l, C, g1, v, PKs, SK, receive, send):
 
     # print(pid, PKs[C.index(pid)][1])
 
-    g_i_e_r, c_r, z_r = (generage_proof(g1, PKs[C.index(pid)], SK, v))
+    g_i_e_r, c_r, z_r = (generage_proof(g1, PKs[C.index(pid)][1], SK, v))
     send(('coin', (g_i_e_r, c_r, z_r)))
     # print(pid, SK)
     coinSender = set()
@@ -102,7 +102,7 @@ def thresholdcoin_bn(sid, pid,  N, f, l, C, g1, v, PKs, SK, receive, send):
             # z = group.deserialize(z_r)
             try:
                 # s1 = time.time()
-                Verify_proof(g1, PKs[C.index(sender)], v, c, z, g_i_e)
+                Verify_proof(g1, PKs[C.index(sender)][1], v, c, z, g_i_e)
                 # s2 = time.time()
                 # print(s2-s1)
             except Exception as e:

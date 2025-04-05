@@ -9,11 +9,13 @@ import hashlib
 import math
 from adkr.acss.core.reliablebroadcast import encode, decode, ceil, merkleTree, merkleVerify, getMerkleBranch
 from charm.toolbox.ecgroup import ECGroup, G, ZR
-from charm.toolbox.pairinggroup import PairingGroup, G1
 from pickle import dumps, loads
 import phe
+from utils.core.betterpairing import G1, ZR as ZR1
+from adkr.acss.core.polynomial_pairing import polynomials_over_BN
+from utils.core.serializer import serialize, deserialize
 from adkr.acss.core.polynomial_charm import polynomials_over
-from adkr.acss.core.polynomial_pairing_cp import polynomials_over_BN
+# from adkr.acss.core.polynomial_pairing_cp import polynomials_over_BN
 
 def hash(x):
     assert isinstance(x, (str, bytes))
@@ -68,8 +70,6 @@ def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  
     """
     if type == 's':
         group = ECGroup(714)
-    elif type == 'b':
-        group = PairingGroup('BN254')
     # assert N >= 3*f + 1
     # assert f >= 0
     # assert 0 <= dealer < N
@@ -88,7 +88,23 @@ def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  
     #   EchoThreshold = ceil((N + f + 1.)/2)
     #   K = EchoThreshold - f
 
-
+    def prove_knowledge_of_encrypted_dlog_BN(g, x, pk, g_to_the_x=None, malicious=malicious):
+        if g_to_the_x is None:
+            Y = g ** x
+        else:
+            Y = g_to_the_x
+        r = pk.get_random_lt_n()
+        c = pk.encrypt(int(x), r_value=r).ciphertext(be_secure=False)
+        # Todo: see if this limitation is libarary-specific. Maybe use a slightly larget N?
+        u = pk.get_random_lt_n() // 3  # maximum valid value we can encrypt
+        T = g ** u
+        e = ZR1.hash(dumps([pk, serialize(g), serialize(Y), c, serialize(T)]))
+        z = u + int(e) * int(x)
+        s = pk.get_random_lt_n()
+        e_u = pk.encrypt(u, r_value=s)
+        w = (pow(r, int(e), pk.nsquare) * s) % pk.nsquare
+        proof = [serialize(T), z, e_u, w]
+        return [serialize(Y), c, proof]
 
     def prove_knowledge_of_encrypted_dlog(g, x, pk, g_to_the_x=None, malicious=malicious):
         if g_to_the_x is None:
@@ -162,20 +178,23 @@ def completesecretsharing(sid, pid, r, N_o, f_o, l_o, C_o, N_n, f_n, l_n, C_n,  
         if type == 's':
             poly = polynomials_over()
         else:
-            poly = polynomials_over_BN()
+            poly = polynomials_over_BN(ZR1)
         phi = poly.random(f_n, m)
         # logger.info('dealer %s get poly phi %d' % (pid, phi(0)))
         # if pid == r % 9 or pid == (r+1) % 9:
         #    outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[0]]) for i in range(N_n)]
         # else:
-        outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[i]], malicious=malicious) for i in range(N_n)]
+        if type == 's':
+            outputs = [prove_knowledge_of_encrypted_dlog(g, phi(C_n[i] + 1), PKs[C_n[i]], malicious=malicious) for i in range(N_n)]
+        else:
+            outputs = [prove_knowledge_of_encrypted_dlog_BN(g, phi(C_n[i] + 1), PKs[C_n[i]], malicious=malicious) for i in range(N_n)]
         msg = dumps([[outputs[i][j] for i in range(N_n)] for j in range(3)])
         # logger.info('node %s generate ss %s output' % (pid, dealer))
         for i in range(N_n):
             thpks.append([C_n[i] + 1, g ** phi(C_n[i] + 1)])
         if type =='b':
             from adkr.keyrefersh.core.poly_misc_bn import interpolate_g1_at_x
-            thpk = interpolate_g1_at_x(thpks[:f_n + 1], 0, group.init(G1))
+            thpk = interpolate_g1_at_x(thpks[:f_n + 1], 0, G1.identity())
             assert thpk == g ** m
         stripes = encode(K_o, N_o, msg)
         mt = merkleTree(stripes)  # full binary tree

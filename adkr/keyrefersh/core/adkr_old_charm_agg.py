@@ -17,11 +17,13 @@ from gevent.queue import Queue
 from collections import defaultdict
 from gevent.event import Event
 from honeybadgerbft.exceptions import UnknownTagError
-from charm.toolbox.ecgroup import ECGroup, G, ZR
-from charm.toolbox.pairinggroup import PairingGroup, ZR, G1, G2, pair
-
+from charm.toolbox.ecgroup import ECGroup, G
+# from charm.toolbox.pairinggroup import PairingGroup, ZR, G1, G2, pair
+from utils.core.betterpairing import G1, G2, ZR, pair
+from adkr.acss.core.polynomial_pairing import polynomials_over_BN
+from adkr.keyrefersh.core.poly_misc_bn import interpolate_g1_at_x
 from adkr.keyrefersh.core.poly_misc_charm import interpolate_g_at_x
-from adkr.keyrefersh.core.poly_misc_bn_charm import interpolate_g1_at_x, lagrange
+from utils.core.serializer import serialize, deserialize
 from adkr.acss.core.acss_charm_agg import completesecretsharing
 from speedmvba_dy.core.smvba_e_dy import speedmvba
 from crypto.ecdsa.ecdsa import ecdsa_vrfy, ecdsa_sign
@@ -99,14 +101,8 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
     """
     if type == 's':
         group = ECGroup(714)
-    elif type == 'b':
-        group = PairingGroup('BN254')
-    def hash2(m):
-        try:
-            m = m.encode()
-        except:
-            pass
-        return group.hash(m, G2)
+
+
     C_o = config_chain[round]
     C_n = config_chain[round+1]
     N_o = len(C_o)
@@ -117,7 +113,15 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
     f_n = f
     _per_round_recv = {}  # Buffer of incoming messages
     _per_round_config = {}
-
+    def verify_knowledge_of_discrete_log_BN(pk, g, Y, c, proof):
+        T, z, e_u, w = proof
+        e = ZR.hash(dumps([pk, serialize(g), Y, c, T]))
+        # be_secure is default true and adds a randomizing factor to the ciphertext as a failsafe.
+        # we need it turned off so that the calculations will be correct
+        c_e = pow(c, int(e), pk.nsquare)
+        return deserialize(T) == (g ** z) * (deserialize(Y) ** (-e)) and \
+               (e_u.ciphertext(be_secure=False) * c_e) % pk.nsquare == pk.encrypt(z, r_value=w).ciphertext(
+            be_secure=False)
     def verify_knowledge_of_discrete_log(pk, g, Y, c, proof):
         T, z, e_u, w = proof
         e = group.hash(dumps([pk, group.serialize(g), Y, c, T]))
@@ -132,9 +136,14 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
         try:
             for i in range(N_n):
                 # if dealer == 2: print(PKs[C_n[i]], g, comms[i], encryptions[i], proofs[i])
-                if not verify_knowledge_of_discrete_log(ePKs[C_n[i]], g, comms[i], encryptions[i], proofs[i]):
-                    print(pid, "verify failed", C_n[i], "for dealer", dealer)
-                    return False
+                if type == 's':
+                    if not verify_knowledge_of_discrete_log(ePKs[C_n[i]], g, comms[i], encryptions[i], proofs[i]):
+                        print(pid, "verify failed", C_n[i], "for dealer", dealer)
+                        return False
+                else:
+                    if not verify_knowledge_of_discrete_log_BN(ePKs[C_n[i]], g, comms[i], encryptions[i], proofs[i]):
+                        print(pid, "verify failed", C_n[i], "for dealer", dealer)
+                        return False
                 # pass
             return True
         except Exception as e:
@@ -287,14 +296,22 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
             if type == 's':
                 commit[i] = group.init(G)
             elif type == 'b':
-                commit[i] = group.init(G1)
+                commit[i] = G1.identity()
             encn = ePKs[C_n[i]].encrypt(int(0))
             share_e[i] = encn.ciphertext(be_secure=False)
             for j in out:
                 share_e[i] = encn._raw_add(acss_value_outputs[j][1][i], share_e[i])
-                commit[i] = commit[i] * group.deserialize(acss_value_outputs[j][0][i])
+                if type == 's':
+                    commit[i] = commit[i] * group.deserialize(acss_value_outputs[j][0][i])
+                if type == 'b':
+                    commit[i] = commit[i] * deserialize(acss_value_outputs[j][0][i])
+
             pk_shares.append([C_n[i] + 1, commit[i]])
-            pk_shares_s.append([C_n[i] + 1, group.serialize(commit[i])])
+            if type == 's':
+                pk_shares_s.append([C_n[i] + 1, group.serialize(commit[i])])
+            if type == 'b':
+                pk_shares_s.append([C_n[i] + 1, serialize(commit[i])])
+
             # print(pid, "append", C_n[i] + 1, commit[i])
         if type == 's':
             thpk = interpolate_g_at_x(pk_shares[:f_o+1], 0, group.init(G))
@@ -309,15 +326,15 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
 
         elif type == 'b':
 
-            thpk = interpolate_g1_at_x(pk_shares[:f_o + 1], 0, group.init(G1))
+            thpk = interpolate_g1_at_x(pk_shares[:f_o + 1], 0, G1.identity())
             assert thpk == g ** (len(out))
-            digest = hash2(str(thpk))
-            digest2 = hash2(str(thpk) + str(C_n))
-            script = (pk_shares_s, share_e, group.serialize(thpk), C_n)
+            digest = G2.hash(serialize(thpk))
+            digest2 = G2.hash(serialize(thpk) + dumps(C_n))
+            script = (pk_shares_s, share_e, serialize(thpk), C_n)
             sigma = digest ** thsk_o
             sigma2 = digest2 ** thsk_o
             for i in C_o:
-                send(i, ('ADKR_CONFIG', 0, (script, (group.serialize(sigma), group.serialize(sigma2)))))
+                send(i, ('ADKR_CONFIG', 0, (script, (serialize(sigma), serialize(sigma2)))))
         # print(pid, "get pkshares:", pk_shares)
 
 
@@ -365,10 +382,16 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
             try:
 
                 sender, ((pk_shares_s, share_e, thpk_s, C_n), sigma) = config_recv.get(0.000001)
-                thpk = group.deserialize(thpk_s)
                 pk_shares = []
-                for itme in pk_shares_s:
-                    pk_shares.append([itme[0], group.deserialize(itme[1])])
+                if type =='s':
+                    thpk = group.deserialize(thpk_s)
+                    for itme in pk_shares_s:
+                        pk_shares.append([itme[0], group.deserialize(itme[1])])
+                if type == 'b':
+                    thpk = deserialize(thpk_s)
+                    for itme in pk_shares_s:
+                        pk_shares.append([itme[0], deserialize(itme[1])])
+
                 if type == 's':
                     digest = hash(str(thpk) + str(C_n))
                     if ecdsa_vrfy(sPK2s[sender], digest, sigma):
@@ -384,19 +407,20 @@ def ADKR_old_c(sid, pid, config_chain, l, f, round, g, type, sPK2s, sSK2, ePKs, 
                         continue
                 elif type == 'b':
                     sigma1, sigma2 = sigma
-                    sigma1_d = group.deserialize(sigma1)
-                    sigma2_d = group.deserialize(sigma2)
-                    digest1 = hash2(str(thpk))
-                    digest2 = hash2(str(thpk) + str(C_n))
+                    sigma1_d = deserialize(sigma1)
+                    sigma2_d = deserialize(sigma2)
+                    digest1 = G2.hash(serialize(thpk))
+                    digest2 = G2.hash(serialize(thpk)+dumps(C_n))
+                    digest = hash(serialize(thpk))
                     # print(thpk)
                     if pair(g, sigma1_d) == pair(thpks_o[C_o.index(sender)][1], digest1) and \
                         pair(g, sigma2_d) == pair(thpks_o[C_o.index(sender)][1], digest2):
                         # print(pid, 'verify', sender, 'right')
-                        pk_digest_bn[digest1].append([sender+1, sigma1_d])
-                        pk_digest_bn2[digest2].append([sender+1, sigma2_d])
-                        if len(pk_digest_bn[digest1]) == f_o + 1:
-                            Sigma = interpolate_g1_at_x(pk_digest_bn[digest1][:f_o + 1], 0, group.init(G2))
-                            Sigma2 = interpolate_g1_at_x(pk_digest_bn2[digest2][:f_o + 1], 0, group.init(G2))
+                        pk_digest_bn[digest].append([sender+1, sigma1_d])
+                        pk_digest_bn2[digest].append([sender+1, sigma2_d])
+                        if len(pk_digest_bn[digest]) == f_o + 1:
+                            Sigma = interpolate_g1_at_x(pk_digest_bn[digest][:f_o + 1], 0, G2.identity())
+                            Sigma2 = interpolate_g1_at_x(pk_digest_bn2[digest][:f_o + 1], 0, G2.identity())
                             # print(pid, 'Sigma', Sigma)
 
                             # assert pair(g, Sigma) == pair(thpk_o, digest1)
