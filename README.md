@@ -39,7 +39,7 @@ A quick start to run Turritopsis for 15 round(1000 txs batch size) with one reco
 
     ./run_local_network_test.sh 10 9 2  1 1000 15
 
-To run sDumbo-Mix for 15 round with a batch size of 1000tx, replace line 12 of run_local_network_test.sh with:
+To run sDumbo-Hybrid for 15 round with a batch size of 1000tx, replace line 12 of run_local_network_test.sh with:
 
     python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "sdumbo-dy"  --O True &
 
@@ -53,11 +53,11 @@ To run sDumbo-Mix for 15 round with a batch size of 1000tx, replace line 12 of r
 
  To run ADKR with secp256k1 only for 15 round, replace line 12 of run_local_network_test.sh with:
 
-    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "adkr"  --O True &
+    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 10 --P "adkr"  --O True &
 
-To run ADKR with BN254 only for 15 round, replace line 12 of run_local_network_test.sh with:
+To run ADKR with BLS12381 only for 15 round, replace line 12 of run_local_network_test.sh with:
 
-    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 100 --P "adkr"  --O True &
+    python3 run_socket_node.py --sid 'sidA' --id $i --N $1 --Ng $2 --f $3 --l $4 --B $5 --K $6 --recon 10 --P "adkr-bn"  --O True &
 
    then run:
 
