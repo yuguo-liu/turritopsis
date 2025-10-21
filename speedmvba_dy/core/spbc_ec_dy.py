@@ -98,10 +98,11 @@ def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, outp
             # print("Node", pid, "has message", m)
             sendsig = ecdsa_sign(SK2, digest1FromLeader)
             if malicious != 0:
-                print(pid, "i am malicious")
+                # print(pid, "i am malicious")
                 last = sendsig[-1]
                 reversed_last = last ^ 0x01
                 sendsig0 = sendsig[:-1] + bytes([reversed_last])
+                print(f"[MALICIOUS] {pid} I have forged the signature")
                 send(leader, ('SPBC_ECHO', sendsig0))
             else:
                 send(leader, ('SPBC_ECHO', sendsig))
@@ -151,10 +152,11 @@ def strongprovablebroadcast(sid, pid, N, f, l, C, PK2s, SK2, leader, input, outp
             digest2 = hash(str((sid, m, "FINAL")))
             readysig = ecdsa_sign(SK2, digest2)
             if malicious != 0:
-                print(pid, "i am malicious")
+                # print(pid, "i am malicious")
                 last = readysig[-1]
                 reversed_last = last ^ 0x01
                 readysig0 = readysig[:-1] + bytes([reversed_last])
+                print(f"[MALICIOUS] {pid} I have forged the signature")
                 send(leader, ('SPBC_FINAL', digest2, readysig0, sid))
             else:
                 send(leader, ('SPBC_FINAL', digest2, readysig, sid))

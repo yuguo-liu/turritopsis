@@ -365,7 +365,7 @@ class Adkrround():
                             self.N_o = len(self.C_o)
                             self.l_o = self.l_n
                             self.f_o = self.f_g
-                    print(self.id, "config verify passed!")
+                    print(self.id, "config verify passed!!!!")
                     share_m = self.eSK.raw_decrypt(share_e[self.C_o.index(self.id)])
                     self.thepks = pk_shares
                     self.thepk = thpk

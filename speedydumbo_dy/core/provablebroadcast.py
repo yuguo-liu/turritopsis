@@ -96,10 +96,11 @@ def provablebroadcast(sid, pid, C, N, f, l, PK2s, SK2, leader, input, value_outp
             # print("Node", pid, "has digest for leader", leader, "session id", sid)
             sig_echo = ecdsa_sign(SK2, digestFromLeader)
             if malicious != 0:
-                print(pid, "i am malicious")
+                # print(pid, "i am malicious")
                 last = sig_echo[-1]
                 reversed_last = last ^ 0x01
                 sig0 = sig_echo[:-1] + bytes([reversed_last])
+                print(f"[MALICIOUS] {pid} I have forged the signature")
                 send(leader, ('PB_ECHO', sig0))
             else:
                 send(leader, ('PB_ECHO', sig_echo))

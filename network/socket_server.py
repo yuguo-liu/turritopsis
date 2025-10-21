@@ -40,7 +40,10 @@ class NetworkServer(Process):
 
         def _handler(sock, address):
             jid = self._address_to_id(address)
-            self.is_in_sock_connected[jid] = True
+            try:
+                self.is_in_sock_connected[jid] = True
+            except Exception as e:
+                print(f"error: {address[0]}:{address[1]} -> {jid}")
             self.logger.info('node id %d server is connected by node %d' % (self.id, jid))
             if all(self.is_in_sock_connected):
                 with self.ready.get_lock():
@@ -76,6 +79,7 @@ class NetworkServer(Process):
         # self.streamServer = StreamServer((self.ip, self.port), _handler)
         # self.streamServer.serve_forever()
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server.bind((self.ip, self.port))
         server.listen(102400)
         while True:

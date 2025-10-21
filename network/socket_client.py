@@ -58,10 +58,17 @@ class NetworkClient (Process):
         #gevent.joinall(send_threads)
 
     def _connect(self, j: int):
-        sock = socket.socket()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         if self.ip == '127.0.0.1':
-            # print(self.ip"bind", self.port + j + 1)
+            # print("bind", self.port + j + 1)
+            # try:
+            #     sock.bind((self.ip, self.port + j + 1))
+            #     print(f"bind: {self.ip}, {self.port + j + 1}")
+            # except Exception as e1:
+            #     print(f"bind error: {self.ip}, {self.port + j + 1}")
             sock.bind((self.ip, self.port + j + 1))
+            # print(f"bind: {self.ip}, {self.port + j + 1}")
         try:
             sock.connect(self.addresses_list[j])
             self.socks[j] = sock

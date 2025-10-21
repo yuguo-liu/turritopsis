@@ -4,8 +4,9 @@ import os
 import phe
 from g_thresh_gen import generate_thre_new, trusted_nonthre_key_gen
 from utils.core.serializer import serialize, deserialize
-def trusted_key_gen(N=17, t=4):
-    N_all = 23
+import argparse
+
+def trusted_key_gen(N, t, N_all):
     keypairs = [phe.paillier.generate_paillier_keypair(n_length=2048) for _ in range(N_all)]
     ePKs1, eSKs1 = [[keypairs[i][j] for i in range(N_all)] for j in range(2)]
     ePKs2, eSKs2 = trusted_nonthre_key_gen(N_all)
@@ -70,4 +71,34 @@ def trusted_key_gen(N=17, t=4):
             pickle.dump(sSK2s[i].secret, fp)
 
 if __name__ == '__main__':
-    trusted_key_gen()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--N', metavar='N', required=True,
+                        help='Total number of party', type=int)
+    parser.add_argument('--Ng', metavar='Ng', required=True,
+                        help='Number of party in one round', type=int)
+    parser.add_argument('--f', metavar='f',required=True,
+                        help='Number of Byzantine Fault party', type=int)
+    parser.add_argument('--l', metavar='l', required=True,
+                        help='Number of in/out party in each refresh', type=int)
+    parser.add_argument('--r', metavar='r', required=True,
+                        help='Number of round', type=int)
+    parser.add_argument('--rf', metavar='rf', required=True,
+                        help='Refresh Frequency', type=int)
+    args = parser.parse_args()
+
+    N = args.N
+    Ng = args.Ng
+    f = args.f
+    l = args.l
+    r = args.r
+    rf = args.rf
+
+    assert Ng >= 3*f + 2*l + 1, f'Following relation should be held: \n N >= 3f + 2l + 1\nYour input:\n {Ng} < 3x{f} + 2x{l} + 1 = {3*f + 2*l + 1}'
+    assert N >= Ng + l * (r // rf), f'Following relation should be held: \n N >= Ng + l * (r // rf)\nYour input:\n {N} < {Ng} + {l} * ({r} // {rf}) = {Ng + l * (r // rf)}'
+    
+    print(N, Ng, f, l, r, rf)
+
+    if f'keys-{Ng}' not in os.listdir(os.getcwd()):
+        os.mkdir(os.getcwd() + f'/keys-{Ng}')
+        
+    trusted_key_gen(Ng, f, N)

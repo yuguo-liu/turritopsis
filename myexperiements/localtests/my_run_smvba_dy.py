@@ -1,13 +1,17 @@
+import sys
+sys.path.append("/home/hugo/turritopsis")
 import random
 import gevent
 from gevent import Greenlet, time
 from gevent.queue import Queue
 from gevent import monkey
-from g_thresh_gen import generate_thre_new
 from utils.core.betterpairing import G2, G1
 g2 = G2.hash(b'1')
 g1 = G1.hash(b'2')
-from adkr.adkr_high.core.smvba_dy import speedmvba
+from speedmvba.core.smvba_e import speedmvba
+from myexperiements.sockettest.sdumbo_dy_node import load_key
+from charm.toolbox.ecgroup import ECGroup, G
+group = ECGroup(714)
 
 monkey.patch_all(thread=False)
 
@@ -44,11 +48,19 @@ def simple_router(N, maxdelay=0.001, seed=None):
             [makeRecv(j) for j in range(N)])
 
 
-def _test_vaba(N=16, f=5, leader=None, seed=None):
+def _test_smbva(N=16, f=5, leader=None, seed=None):
     # Test everything when runs are OK
     # sid = 'SMVBA'
     # Note thld siganture for CBC has a threshold different from common coin's
-    g1, g2, thpk, thpks, thsks = generate_thre_new(N, 2*f)
+    # g1, g2, thpk, thpks, thsks = generate_thre_new(N, 2*f)
+    SK2s = []
+    PK2s = None
+    eSKs = []
+    ePKs = None
+    for id in range(N):
+        PK2s, ePKs, sk2, eSK, _, _, _ = load_key(id, N, N, 0)
+        SK2s.append(sk2)
+        eSKs.append(eSK)
     C = [i for i in range(N)]
     s_time = time.time()
     sid = 'SMVBA'+str(random.Random(seed).random()*100)
@@ -62,24 +74,27 @@ def _test_vaba(N=16, f=5, leader=None, seed=None):
         return True
 
     for i in range(N):
-        inputs[i].put_nowait([i, (i+1)%N, (i+2)%N])
-        print("Input to node %d has been provided" % i)
+        node_input = [i, (i+1)%N, (i+2)%N]
+        inputs[i].put_nowait(node_input)
+        print(f"\033[30m[INFO]\033[0m Input to node {i} has been provided as: {node_input}")
 
     for i in range(N):
-        t = Greenlet(speedmvba, sid, i, N, f, 0, C, thpk, thpks, thsks[i], g1,
-                     inputs[i].get, outputs[i].put_nowait, recvs[i], sends[i], p)
+        t = Greenlet(speedmvba, sid, i, N, f, PK2s, SK2s[i], 
+                     inputs[i].get, outputs[i].put_nowait, recvs[i], sends[i], predicate=p)
         t.start()
         threads.append(t)
-        print("sMVBA at node %d has been instantiated" % i)
+        print("\033[30m[INFO]\033[0m sMVBA at node %d has been instantiated" % i)
 
     try:
         outs = [outputs[i].get() for i in range(N)]
 
         try:
             gevent.joinall(threads)
-            print(outs)
+            print("\033[36m[OUTPUTS]\033[0m Outputs: ", outs)
             e_time = time.time()
-            print("running time:", e_time - s_time)
+            print("\033[33m[TIME]\033[0m running time:", e_time - s_time)
+            assert all(outs[0] == o for o in outs[1:]), "\033[31m[ERROR]\033[0m Agreement is not reached for different output"
+            print("\033[32m[PASS]\033[0m All outputs are consistent, agreement passed")
         except gevent.hub.LoopExit:
             pass
     except KeyboardInterrupt:
@@ -93,11 +108,11 @@ def _test_vaba(N=16, f=5, leader=None, seed=None):
     # assert [PK.verify_signature(t.value[1], digest) for t in threads] == [True]*N
 
 
-def test_vaba(N, f, seed):
-    for k in range(10):
-        print("round", k)
-        _test_vaba(N=N, f=f, seed=seed)
+def test_smvba(N, f, seed, r):
+    for k in range(r):
+        print("\033[35m[ROUND]\033[0m Round", k)
+        _test_smbva(N=N, f=f, seed=seed)
 
 
 if __name__ == '__main__':
-    test_vaba(4, 1, None)
+    test_smvba(9, 2, None, 1)

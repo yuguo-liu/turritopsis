@@ -108,7 +108,7 @@ class SDumboDYNode (SpeedyDumbo):
             print("malicious in old", pi2[:(count)])
             if id in pi[:f] or id in pi2[:(count)]:
                 self.malicious = 1
-                print("i am malicious", id)
+                print("[MALICIOUS] I am malicious", id)
 
         if id in self.C_g:
             SpeedyDumbo.__init__(self, sid, id, B, B_m, l, f, self.C_g, self.N, reconfig, self.leave_list, self.g, 's',

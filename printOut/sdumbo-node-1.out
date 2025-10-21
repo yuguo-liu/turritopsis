@@ -1,0 +1,1020 @@
+main
+here debug =  False
+here N =  9
+m= 0
+9
+9 2 1
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+1 <class 'int'>
+[]
+[]
+debug is  False
+False
+waiting for network ready...
+waiting for network ready...
+1 start to run round 0 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 0 with having 6000 TXs
+this round time: 0.03847241401672363
+Node 1 counting so-far tps: 132561.940983, latency 0.045262
+1 start to run round 1 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 1 with having 6000 TXs
+this round time: 0.04186820983886719
+Node 1 counting so-far tps: 135928.249087, latency 0.044141
+1 start to run round 2 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 2 with having 6000 TXs
+this round time: 0.03173661231994629
+Node 1 counting so-far tps: 148128.945169, latency 0.040505
+1 start to run round 3 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 3 with having 6000 TXs
+this round time: 0.03037118911743164
+Node 1 counting so-far tps: 156710.244990, latency 0.038287
+1 start to run round 4 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 4 with having 6000 TXs
+this round time: 0.030644655227661133
+Node 1 counting so-far tps: 162070.936638, latency 0.037021
+1 start to run round 5 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 5 with having 6000 TXs
+this round time: 0.03235030174255371
+Node 1 counting so-far tps: 164700.136455, latency 0.036430
+1 start to run round 6 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 6 with having 6000 TXs
+this round time: 0.029958248138427734
+Node 1 counting so-far tps: 168237.778079, latency 0.035664
+1 start to run round 7 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 7 with having 6000 TXs
+this round time: 0.03316473960876465
+Node 1 counting so-far tps: 169016.828092, latency 0.035499
+1 start to run round 8 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 8 with having 6000 TXs
+this round time: 0.03529214859008789
+Node 1 counting so-far tps: 168542.586892, latency 0.035599
+1 start to run round 9 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 9 with having 6000 TXs
+this round time: 0.03696751594543457
+Node 1 counting so-far tps: 167414.005637, latency 0.035839
+1 start to run round 10 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 10 with having 6000 TXs
+this round time: 0.07138395309448242
+Node 1 counting so-far tps: 153114.804549, latency 0.039186
+1 start to run round 11 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 11 with having 8000 TXs
+this round time: 0.10496640205383301
+Node 1 counting so-far tps: 137690.322592, latency 0.044786
+1 start to run round 12 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 12 with having 9000 TXs
+this round time: 0.11973094940185547
+Node 1 counting so-far tps: 126074.448725, latency 0.050642
+1 start to run round 13 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 13 with having 9000 TXs
+this round time: 0.11120414733886719
+Node 1 counting so-far tps: 119338.297052, latency 0.055066
+1 start to run round 14 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 14 with having 9000 TXs
+this round time: 0.11571121215820312
+Node 1 counting so-far tps: 113758.742948, latency 0.059190
+1 start to run round 15 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 15 with having 9000 TXs
+this round time: 0.11213469505310059
+Node 1 counting so-far tps: 109867.116003, latency 0.062576
+1 start to run round 16 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 16 with having 9000 TXs
+this round time: 0.11757087707519531
+Node 1 counting so-far tps: 106253.697692, latency 0.065880
+1 start to run round 17 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 17 with having 9000 TXs
+this round time: 0.11755728721618652
+Node 1 counting so-far tps: 103334.625230, latency 0.068816
+1 start to run round 18 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 18 with having 9000 TXs
+this round time: 0.11371779441833496
+Node 1 counting so-far tps: 101210.102417, latency 0.071243
+1 start to run round 19 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 19 with having 9000 TXs
+this round time: 0.11828064918518066
+Node 1 counting so-far tps: 99111.107443, latency 0.073655
+1 start to run round 20 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 20 with having 9000 TXs
+this round time: 0.11760997772216797
+Node 1 counting so-far tps: 97370.718351, latency 0.075803
+1 start to run round 21 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 21 with having 9000 TXs
+this round time: 0.11691403388977051
+Node 1 counting so-far tps: 95911.151107, latency 0.077723
+1 start to run round 22 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 22 with having 9000 TXs
+this round time: 0.12346243858337402
+Node 1 counting so-far tps: 94297.383222, latency 0.079766
+1 start to run round 23 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 23 with having 9000 TXs
+this round time: 0.11324453353881836
+Node 1 counting so-far tps: 93322.730984, latency 0.081259
+1 start to run round 24 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 24 with having 9000 TXs
+this round time: 0.11110305786132812
+Node 1 counting so-far tps: 92606.156951, latency 0.082500
+1 start to run round 25 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 25 with having 9000 TXs
+this round time: 0.11932134628295898
+Node 1 counting so-far tps: 91615.756331, latency 0.083963
+1 start to run round 26 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 26 with having 9000 TXs
+this round time: 0.1114187240600586
+Node 1 counting so-far tps: 91036.401287, latency 0.085029
+1 start to run round 27 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 27 with having 9000 TXs
+this round time: 0.14274263381958008
+Node 1 counting so-far tps: 89357.095222, latency 0.087130
+1 start to run round 28 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 28 with having 9000 TXs
+this round time: 0.1195228099822998
+Node 1 counting so-far tps: 88662.067311, latency 0.088286
+1 start to run round 29 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 29 with having 9000 TXs
+this round time: 0.11470341682434082
+Node 1 counting so-far tps: 88187.869318, latency 0.089204
+1 start to run round 30 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 30 with having 9000 TXs
+this round time: 0.11371350288391113
+Node 1 counting so-far tps: 87782.535349, latency 0.090032
+1 start to run round 31 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 31 with having 9000 TXs
+this round time: 0.11495113372802734
+Node 1 counting so-far tps: 87372.805312, latency 0.090846
+1 start to run round 32 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 32 with having 9000 TXs
+this round time: 0.11262059211730957
+Node 1 counting so-far tps: 87062.380468, latency 0.091540
+1 start to run round 33 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 33 with having 9000 TXs
+this round time: 0.11838889122009277
+Node 1 counting so-far tps: 86613.908628, latency 0.092364
+1 start to run round 34 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 34 with having 9000 TXs
+this round time: 0.11256003379821777
+Node 1 counting so-far tps: 86353.750591, latency 0.092973
+1 start to run round 35 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 35 with having 9000 TXs
+this round time: 0.11499190330505371
+Node 1 counting so-far tps: 86047.778219, latency 0.093617
+1 start to run round 36 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 36 with having 9000 TXs
+this round time: 0.11775374412536621
+Node 1 counting so-far tps: 85696.166466, latency 0.094299
+1 start to run round 37 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 37 with having 9000 TXs
+this round time: 0.11489510536193848
+Node 1 counting so-far tps: 85434.406642, latency 0.094871
+1 start to run round 38 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 38 with having 9000 TXs
+this round time: 0.118011474609375
+Node 1 counting so-far tps: 85116.096197, latency 0.095496
+1 start to run round 39 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 39 with having 9000 TXs
+this round time: 0.13451313972473145
+Node 1 counting so-far tps: 84455.694801, latency 0.096500
+1 start to run round 40 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 40 with having 9000 TXs
+this round time: 0.11599946022033691
+Node 1 counting so-far tps: 84230.686596, latency 0.097004
+1 start to run round 41 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 41 with having 9000 TXs
+this round time: 0.11484289169311523
+Node 1 counting so-far tps: 84043.187011, latency 0.097456
+1 start to run round 42 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 42 with having 9000 TXs
+this round time: 0.11742162704467773
+Node 1 counting so-far tps: 83813.169665, latency 0.097948
+1 start to run round 43 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 43 with having 9000 TXs
+this round time: 0.11978411674499512
+Node 1 counting so-far tps: 83547.403751, latency 0.098474
+1 start to run round 44 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 44 with having 9000 TXs
+this round time: 0.11835408210754395
+Node 1 counting so-far tps: 83323.214839, latency 0.098945
+1 start to run round 45 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 45 with having 9000 TXs
+this round time: 0.11551189422607422
+Node 1 counting so-far tps: 83161.849712, latency 0.099335
+1 start to run round 46 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 46 with having 9000 TXs
+this round time: 0.1203761100769043
+Node 1 counting so-far tps: 82919.127863, latency 0.099815
+1 start to run round 47 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 47 with having 9000 TXs
+this round time: 0.11258721351623535
+Node 1 counting so-far tps: 82826.352202, latency 0.100109
+1 start to run round 48 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 48 with having 9000 TXs
+this round time: 0.11841797828674316
+Node 1 counting so-far tps: 82639.070637, latency 0.100511
+1 start to run round 49 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 49 with having 9000 TXs
+this round time: 0.1147298812866211
+Node 1 counting so-far tps: 82520.968937, latency 0.100823
+1 start to run round 50 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 50 with having 9000 TXs
+this round time: 0.11423039436340332
+Node 1 counting so-far tps: 82418.678456, latency 0.101110
+1 start to run round 51 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 51 with having 9000 TXs
+this round time: 0.12056779861450195
+Node 1 counting so-far tps: 82222.655063, latency 0.101507
+1 start to run round 52 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 52 with having 9000 TXs
+this round time: 0.109710693359375
+Node 1 counting so-far tps: 82185.602375, latency 0.101703
+1 start to run round 53 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 53 with having 9000 TXs
+this round time: 0.11458182334899902
+Node 1 counting so-far tps: 82091.732709, latency 0.101964
+1 start to run round 54 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 54 with having 9000 TXs
+this round time: 0.11612701416015625
+Node 1 counting so-far tps: 81979.187200, latency 0.102243
+1 start to run round 55 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 55 with having 9000 TXs
+this round time: 0.11737203598022461
+Node 1 counting so-far tps: 81850.741157, latency 0.102539
+1 start to run round 56 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 56 with having 9000 TXs
+this round time: 0.131239652633667
+Node 1 counting so-far tps: 81536.990784, latency 0.103064
+1 start to run round 57 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 57 with having 9000 TXs
+this round time: 0.11522316932678223
+Node 1 counting so-far tps: 81454.279186, latency 0.103295
+1 start to run round 58 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 58 with having 9000 TXs
+this round time: 0.11689066886901855
+Node 1 counting so-far tps: 81352.469464, latency 0.103546
+1 start to run round 59 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 59 with having 9000 TXs
+this round time: 0.11605620384216309
+Node 1 counting so-far tps: 81265.212651, latency 0.103775
+1 start to run round 60 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 60 with having 9000 TXs
+this round time: 0.11628985404968262
+Node 1 counting so-far tps: 81178.034367, latency 0.104001
+1 start to run round 61 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 61 with having 9000 TXs
+this round time: 0.11700010299682617
+Node 1 counting so-far tps: 81085.393600, latency 0.104231
+1 start to run round 62 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 62 with having 9000 TXs
+this round time: 0.11625909805297852
+Node 1 counting so-far tps: 81005.456071, latency 0.104441
+1 start to run round 63 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 63 with having 9000 TXs
+this round time: 0.11717391014099121
+Node 1 counting so-far tps: 80916.987887, latency 0.104660
+1 start to run round 64 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 64 with having 9000 TXs
+this round time: 0.11676955223083496
+Node 1 counting so-far tps: 80835.970133, latency 0.104866
+1 start to run round 65 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 65 with having 9000 TXs
+this round time: 0.11635541915893555
+Node 1 counting so-far tps: 80762.434216, latency 0.105059
+1 start to run round 66 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 66 with having 9000 TXs
+this round time: 0.11393880844116211
+Node 1 counting so-far tps: 80719.457116, latency 0.105211
+1 start to run round 67 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 67 with having 9000 TXs
+this round time: 0.1202840805053711
+Node 1 counting so-far tps: 80606.017539, latency 0.105451
+1 start to run round 68 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 68 with having 9000 TXs
+this round time: 0.11729168891906738
+Node 1 counting so-far tps: 80529.956342, latency 0.105641
+1 start to run round 69 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 69 with having 9000 TXs
+this round time: 0.11392927169799805
+Node 1 counting so-far tps: 80492.779911, latency 0.105777
+1 start to run round 70 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 70 with having 9000 TXs
+this round time: 0.12077164649963379
+Node 1 counting so-far tps: 80383.159929, latency 0.106006
+1 start to run round 71 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 71 with having 9000 TXs
+this round time: 0.11599564552307129
+Node 1 counting so-far tps: 80327.821766, latency 0.106162
+1 start to run round 72 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 72 with having 9000 TXs
+this round time: 0.13486671447753906
+Node 1 counting so-far tps: 80079.246310, latency 0.106573
+1 start to run round 73 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 73 with having 9000 TXs
+this round time: 0.11108994483947754
+Node 1 counting so-far tps: 80079.517858, latency 0.106651
+1 start to run round 74 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 74 with having 9000 TXs
+this round time: 0.11583185195922852
+Node 1 counting so-far tps: 80032.791981, latency 0.106790
+1 start to run round 75 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 75 with having 9000 TXs
+this round time: 0.11814761161804199
+Node 1 counting so-far tps: 79963.773267, latency 0.106956
+1 start to run round 76 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 76 with having 9000 TXs
+this round time: 0.1177065372467041
+Node 1 counting so-far tps: 79900.116585, latency 0.107114
+1 start to run round 77 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 77 with having 9000 TXs
+this round time: 0.11642336845397949
+Node 1 counting so-far tps: 79851.913514, latency 0.107250
+1 start to run round 78 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 78 with having 9000 TXs
+this round time: 0.1144862174987793
+Node 1 counting so-far tps: 79823.313856, latency 0.107357
+1 start to run round 79 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 79 with having 9000 TXs
+this round time: 0.11455059051513672
+Node 1 counting so-far tps: 79795.019589, latency 0.107463
+1 start to run round 80 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 80 with having 9000 TXs
+this round time: 0.1232748031616211
+Node 1 counting so-far tps: 79686.901340, latency 0.107674
+1 start to run round 81 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 81 with having 9000 TXs
+this round time: 0.13942551612854004
+Node 1 counting so-far tps: 79436.913270, latency 0.108078
+1 start to run round 82 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 82 with having 9000 TXs
+this round time: 0.11469292640686035
+Node 1 counting so-far tps: 79413.411943, latency 0.108173
+1 start to run round 83 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 83 with having 9000 TXs
+this round time: 0.11760473251342773
+Node 1 counting so-far tps: 79365.256890, latency 0.108300
+1 start to run round 84 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 84 with having 9000 TXs
+this round time: 0.11936211585998535
+Node 1 counting so-far tps: 79302.571455, latency 0.108445
+1 start to run round 85 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 85 with having 9000 TXs
+this round time: 0.11258053779602051
+Node 1 counting so-far tps: 79298.823113, latency 0.108509
+1 start to run round 86 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 86 with having 9000 TXs
+this round time: 0.11402654647827148
+Node 1 counting so-far tps: 79283.924461, latency 0.108587
+1 start to run round 87 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 87 with having 9000 TXs
+this round time: 0.11546516418457031
+Node 1 counting so-far tps: 79257.514355, latency 0.108679
+1 start to run round 88 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 88 with having 9000 TXs
+this round time: 0.11616706848144531
+Node 1 counting so-far tps: 79226.051184, latency 0.108777
+1 start to run round 89 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 89 with having 9000 TXs
+this round time: 0.11618638038635254
+Node 1 counting so-far tps: 79194.684843, latency 0.108874
+1 start to run round 90 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 90 with having 9000 TXs
+this round time: 0.11025166511535645
+Node 1 counting so-far tps: 79205.670620, latency 0.108911
+1 start to run round 91 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 91 with having 9000 TXs
+this round time: 0.1151876449584961
+Node 1 counting so-far tps: 79183.876158, latency 0.108992
+1 start to run round 92 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 92 with having 9000 TXs
+this round time: 0.11644124984741211
+Node 1 counting so-far tps: 79152.855552, latency 0.109085
+1 start to run round 93 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 93 with having 9000 TXs
+this round time: 0.10734176635742188
+Node 1 counting so-far tps: 79193.065763, latency 0.109079
+1 start to run round 94 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 94 with having 9000 TXs
+this round time: 0.11607551574707031
+Node 1 counting so-far tps: 79165.514612, latency 0.109165
+1 start to run round 95 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 95 with having 9000 TXs
+this round time: 0.11257672309875488
+Node 1 counting so-far tps: 79164.589431, latency 0.109213
+1 start to run round 96 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 96 with having 9000 TXs
+this round time: 0.11230158805847168
+Node 1 counting so-far tps: 79166.236178, latency 0.109257
+1 start to run round 97 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 97 with having 9000 TXs
+this round time: 0.11537051200866699
+Node 1 counting so-far tps: 79145.561401, latency 0.109331
+1 start to run round 98 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 98 with having 9000 TXs
+this round time: 0.13757061958312988
+Node 1 counting so-far tps: 78962.954472, latency 0.109628
+1 start to run round 99 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 99 with having 9000 TXs
+this round time: 0.11593961715698242
+Node 1 counting so-far tps: 78940.117047, latency 0.109703
+1 start to run round 100 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 100 with having 9000 TXs
+this round time: 0.11305832862854004
+Node 1 counting so-far tps: 78938.725727, latency 0.109748
+1 start to run round 101 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 101 with having 9000 TXs
+this round time: 0.11665582656860352
+Node 1 counting so-far tps: 78912.028129, latency 0.109827
+1 start to run round 102 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 102 with having 9000 TXs
+this round time: 0.11357474327087402
+Node 1 counting so-far tps: 78907.437748, latency 0.109874
+1 start to run round 103 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 103 with having 9000 TXs
+this round time: 0.114166259765625
+Node 1 counting so-far tps: 78898.931051, latency 0.109926
+1 start to run round 104 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 104 with having 9000 TXs
+this round time: 0.11275124549865723
+Node 1 counting so-far tps: 78899.969167, latency 0.109964
+1 start to run round 105 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 105 with having 9000 TXs
+this round time: 0.11421322822570801
+Node 1 counting so-far tps: 78891.247051, latency 0.110015
+1 start to run round 106 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 106 with having 9000 TXs
+this round time: 0.11626052856445312
+Node 1 counting so-far tps: 78868.908660, latency 0.110084
+1 start to run round 107 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 107 with having 9000 TXs
+this round time: 0.11306095123291016
+Node 1 counting so-far tps: 78868.354227, latency 0.110123
+1 start to run round 108 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 108 with having 9000 TXs
+this round time: 0.11607122421264648
+Node 1 counting so-far tps: 78847.980465, latency 0.110188
+1 start to run round 109 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 109 with having 9000 TXs
+this round time: 0.11484909057617188
+Node 1 counting so-far tps: 78836.270521, latency 0.110240
+1 start to run round 110 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 110 with having 9000 TXs
+this round time: 0.11339402198791504
+Node 1 counting so-far tps: 78833.895824, latency 0.110279
+1 start to run round 111 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 111 with having 9000 TXs
+this round time: 0.11202645301818848
+Node 1 counting so-far tps: 78838.429327, latency 0.110307
+1 start to run round 112 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 112 with having 9000 TXs
+this round time: 0.11463403701782227
+Node 1 counting so-far tps: 78828.077603, latency 0.110356
+1 start to run round 113 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 113 with having 9000 TXs
+this round time: 0.11383461952209473
+Node 1 counting so-far tps: 78822.728796, latency 0.110397
+1 start to run round 114 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 114 with having 9000 TXs
+this round time: 0.11477041244506836
+Node 1 counting so-far tps: 78811.265910, latency 0.110445
+1 start to run round 115 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 115 with having 9000 TXs
+this round time: 0.11375570297241211
+Node 1 counting so-far tps: 78806.508934, latency 0.110484
+1 start to run round 116 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 116 with having 9000 TXs
+this round time: 0.11610674858093262
+Node 1 counting so-far tps: 78787.817010, latency 0.110542
+1 start to run round 117 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 117 with having 9000 TXs
+this round time: 0.11419200897216797
+Node 1 counting so-far tps: 78781.062549, latency 0.110583
+1 start to run round 118 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 118 with having 9000 TXs
+this round time: 0.11558103561401367
+Node 1 counting so-far tps: 78766.161041, latency 0.110635
+1 start to run round 119 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 119 with having 9000 TXs
+this round time: 0.11463451385498047
+Node 1 counting so-far tps: 78757.105570, latency 0.110678
+1 start to run round 120 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 120 with having 9000 TXs
+this round time: 0.11798405647277832
+Node 1 counting so-far tps: 78728.070539, latency 0.110748
+1 start to run round 121 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 121 with having 9000 TXs
+this round time: 0.11380767822265625
+Node 1 counting so-far tps: 78724.247964, latency 0.110783
+1 start to run round 122 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 122 with having 9000 TXs
+this round time: 0.11469435691833496
+Node 1 counting so-far tps: 78715.312910, latency 0.110824
+1 start to run round 123 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 123 with having 9000 TXs
+this round time: 0.1147756576538086
+Node 1 counting so-far tps: 78706.114882, latency 0.110866
+1 start to run round 124 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 124 with having 9000 TXs
+this round time: 0.1149141788482666
+Node 1 counting so-far tps: 78695.316713, latency 0.110909
+1 start to run round 125 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 125 with having 9000 TXs
+this round time: 0.11644768714904785
+Node 1 counting so-far tps: 78676.313340, latency 0.110963
+1 start to run round 126 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 126 with having 9000 TXs
+this round time: 0.11722540855407715
+Node 1 counting so-far tps: 78653.848678, latency 0.111022
+1 start to run round 127 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 127 with having 9000 TXs
+this round time: 0.11950302124023438
+Node 1 counting so-far tps: 78618.488005, latency 0.111098
+1 start to run round 128 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 128 with having 9000 TXs
+this round time: 0.11725115776062012
+Node 1 counting so-far tps: 78597.148836, latency 0.111155
+1 start to run round 129 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 129 with having 9000 TXs
+this round time: 0.11773419380187988
+Node 1 counting so-far tps: 78572.100808, latency 0.111216
+1 start to run round 130 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 130 with having 9000 TXs
+this round time: 0.11349368095397949
+Node 1 counting so-far tps: 78571.539496, latency 0.111242
+1 start to run round 131 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 131 with having 9000 TXs
+this round time: 0.11594510078430176
+Node 1 counting so-far tps: 78557.408452, latency 0.111287
+1 start to run round 132 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 132 with having 9000 TXs
+this round time: 0.11369776725769043
+Node 1 counting so-far tps: 78555.661603, latency 0.111314
+1 start to run round 133 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 133 with having 9000 TXs
+this round time: 0.11591958999633789
+Node 1 counting so-far tps: 78541.896367, latency 0.111358
+1 start to run round 134 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 134 with having 9000 TXs
+this round time: 0.11574649810791016
+Node 1 counting so-far tps: 78529.372722, latency 0.111400
+1 start to run round 135 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 135 with having 9000 TXs
+this round time: 0.11713600158691406
+Node 1 counting so-far tps: 78510.002667, latency 0.111451
+1 start to run round 136 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 136 with having 9000 TXs
+this round time: 0.11435341835021973
+Node 1 counting so-far tps: 78500.921989, latency 0.111487
+1 start to run round 137 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 137 with having 9000 TXs
+this round time: 0.11368870735168457
+Node 1 counting so-far tps: 78498.282780, latency 0.111514
+1 start to run round 138 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 138 with having 9000 TXs
+this round time: 0.11888575553894043
+Node 1 counting so-far tps: 78469.554275, latency 0.111577
+1 start to run round 139 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 139 with having 9000 TXs
+this round time: 0.11278724670410156
+Node 1 counting so-far tps: 78472.386545, latency 0.111595
+1 start to run round 140 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 140 with having 9000 TXs
+this round time: 0.11984610557556152
+Node 1 counting so-far tps: 78440.671426, latency 0.111662
+1 start to run round 141 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 141 with having 9000 TXs
+this round time: 0.11555862426757812
+Node 1 counting so-far tps: 78428.846995, latency 0.111701
+1 start to run round 142 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 142 with having 9000 TXs
+this round time: 0.1136932373046875
+Node 1 counting so-far tps: 78428.171532, latency 0.111723
+1 start to run round 143 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 143 with having 9000 TXs
+this round time: 0.11517190933227539
+Node 1 counting so-far tps: 78419.942788, latency 0.111756
+1 start to run round 144 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 144 with having 9000 TXs
+this round time: 0.1178891658782959
+Node 1 counting so-far tps: 78397.830904, latency 0.111808
+1 start to run round 145 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 145 with having 9000 TXs
+this round time: 0.11364197731018066
+Node 1 counting so-far tps: 78397.558782, latency 0.111829
+1 start to run round 146 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 146 with having 9000 TXs
+this round time: 0.11350727081298828
+Node 1 counting so-far tps: 78397.576940, latency 0.111849
+1 start to run round 147 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 147 with having 9000 TXs
+this round time: 0.11735200881958008
+Node 1 counting so-far tps: 78378.763006, latency 0.111896
+1 start to run round 148 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 148 with having 9000 TXs
+this round time: 0.1173090934753418
+Node 1 counting so-far tps: 78361.023498, latency 0.111941
+1 start to run round 149 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 149 with having 9000 TXs
+this round time: 0.11187171936035156
+Node 1 counting so-far tps: 78368.223412, latency 0.111950
+1 start to run round 150 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 150 with having 9000 TXs
+this round time: 0.11493086814880371
+Node 1 counting so-far tps: 78361.873113, latency 0.111978
+1 start to run round 151 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 151 with having 9000 TXs
+this round time: 0.11650252342224121
+Node 1 counting so-far tps: 78348.241848, latency 0.112017
+1 start to run round 152 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 152 with having 9000 TXs
+this round time: 0.1158442497253418
+Node 1 counting so-far tps: 78337.160832, latency 0.112051
+1 start to run round 153 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 153 with having 9000 TXs
+this round time: 0.11985349655151367
+Node 1 counting so-far tps: 78308.808500, latency 0.112110
+1 start to run round 154 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 154 with having 9000 TXs
+this round time: 0.11106729507446289
+Node 1 counting so-far tps: 78318.344312, latency 0.112115
+1 start to run round 155 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 155 with having 9000 TXs
+this round time: 0.11829423904418945
+Node 1 counting so-far tps: 78297.505796, latency 0.112163
+1 start to run round 156 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 156 with having 9000 TXs
+this round time: 0.11749267578125
+Node 1 counting so-far tps: 78279.713063, latency 0.112206
+1 start to run round 157 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 157 with having 9000 TXs
+this round time: 0.11041426658630371
+Node 1 counting so-far tps: 78293.338630, latency 0.112204
+1 start to run round 158 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 158 with having 9000 TXs
+this round time: 0.11524033546447754
+Node 1 counting so-far tps: 78285.727517, latency 0.112232
+1 start to run round 159 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 159 with having 9000 TXs
+this round time: 0.11333441734313965
+Node 1 counting so-far tps: 78286.832049, latency 0.112247
+1 start to run round 160 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 160 with having 9000 TXs
+this round time: 0.1164236068725586
+Node 1 counting so-far tps: 78275.295738, latency 0.112281
+1 start to run round 161 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 161 with having 9000 TXs
+this round time: 0.11875438690185547
+Node 1 counting so-far tps: 78252.446764, latency 0.112330
+1 start to run round 162 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 162 with having 9000 TXs
+this round time: 0.11731171607971191
+Node 1 counting so-far tps: 78237.362111, latency 0.112368
+1 start to run round 163 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 163 with having 9000 TXs
+this round time: 0.11111164093017578
+Node 1 counting so-far tps: 78247.341099, latency 0.112370
+1 start to run round 164 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 164 with having 9000 TXs
+this round time: 0.11487007141113281
+Node 1 counting so-far tps: 78241.662816, latency 0.112395
+1 start to run round 165 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 165 with having 9000 TXs
+this round time: 0.11681151390075684
+Node 1 counting so-far tps: 78229.223074, latency 0.112428
+1 start to run round 166 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 166 with having 9000 TXs
+this round time: 0.1129300594329834
+Node 1 counting so-far tps: 78232.462265, latency 0.112439
+1 start to run round 167 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 167 with having 9000 TXs
+this round time: 0.11502718925476074
+Node 1 counting so-far tps: 78226.749407, latency 0.112463
+1 start to run round 168 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 168 with having 9000 TXs
+this round time: 0.11847209930419922
+Node 1 counting so-far tps: 78206.721555, latency 0.112507
+1 start to run round 169 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 169 with having 9000 TXs
+this round time: 0.10773301124572754
+Node 1 counting so-far tps: 78231.105819, latency 0.112487
+1 start to run round 170 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 170 with having 9000 TXs
+this round time: 0.11706209182739258
+Node 1 counting so-far tps: 78217.458605, latency 0.112522
+1 start to run round 171 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 171 with having 9000 TXs
+this round time: 0.11187553405761719
+Node 1 counting so-far tps: 78224.914037, latency 0.112526
+1 start to run round 172 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 172 with having 9000 TXs
+this round time: 0.1147463321685791
+Node 1 counting so-far tps: 78220.758471, latency 0.112546
+1 start to run round 173 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 173 with having 9000 TXs
+this round time: 0.1142723560333252
+Node 1 counting so-far tps: 78218.524976, latency 0.112564
+1 start to run round 174 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 174 with having 9000 TXs
+this round time: 0.11326813697814941
+Node 1 counting so-far tps: 78220.025411, latency 0.112576
+1 start to run round 175 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 175 with having 9000 TXs
+this round time: 0.1160285472869873
+Node 1 counting so-far tps: 78210.886173, latency 0.112603
+1 start to run round 176 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 176 with having 9000 TXs
+this round time: 0.11496973037719727
+Node 1 counting so-far tps: 78206.083051, latency 0.112624
+1 start to run round 177 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 177 with having 9000 TXs
+this round time: 0.11525630950927734
+Node 1 counting so-far tps: 78200.179835, latency 0.112647
+1 start to run round 178 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 178 with having 9000 TXs
+this round time: 0.11429500579833984
+Node 1 counting so-far tps: 78197.701509, latency 0.112664
+1 start to run round 179 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 179 with having 9000 TXs
+this round time: 0.11652898788452148
+Node 1 counting so-far tps: 78186.813439, latency 0.112693
+1 start to run round 180 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 180 with having 9000 TXs
+this round time: 0.11723613739013672
+Node 1 counting so-far tps: 78173.471477, latency 0.112726
+1 start to run round 181 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 181 with having 9000 TXs
+this round time: 0.11885404586791992
+Node 1 counting so-far tps: 78153.620131, latency 0.112767
+1 start to run round 182 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 182 with having 9000 TXs
+this round time: 0.11521697044372559
+Node 1 counting so-far tps: 78147.170765, latency 0.112790
+1 start to run round 183 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 183 with having 9000 TXs
+this round time: 0.11595416069030762
+Node 1 counting so-far tps: 78138.603229, latency 0.112815
+1 start to run round 184 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 184 with having 8000 TXs
+this round time: 0.11220932006835938
+Node 1 counting so-far tps: 78096.244805, latency 0.112820
+1 start to run round 185 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 185 with having 9000 TXs
+this round time: 0.11405467987060547
+Node 1 counting so-far tps: 78096.056479, latency 0.112833
+1 start to run round 186 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 186 with having 9000 TXs
+this round time: 0.11720609664916992
+Node 1 counting so-far tps: 78083.443461, latency 0.112864
+1 start to run round 187 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 187 with having 9000 TXs
+this round time: 0.1186981201171875
+Node 1 counting so-far tps: 78065.413471, latency 0.112903
+1 start to run round 188 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 188 with having 9000 TXs
+this round time: 0.11889839172363281
+Node 1 counting so-far tps: 78047.255215, latency 0.112942
+1 start to run round 189 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 189 with having 9000 TXs
+this round time: 0.11382007598876953
+Node 1 counting so-far tps: 78047.668044, latency 0.112954
+1 start to run round 190 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 190 with having 9000 TXs
+this round time: 0.12248992919921875
+Node 1 counting so-far tps: 78016.952674, latency 0.113011
+1 start to run round 191 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 191 with having 9000 TXs
+this round time: 0.11016488075256348
+Node 1 counting so-far tps: 78022.012802, latency 0.113016
+1 start to run round 192 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 192 with having 9000 TXs
+this round time: 0.11403417587280273
+Node 1 counting so-far tps: 78021.410444, latency 0.113029
+1 start to run round 193 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 193 with having 9000 TXs
+this round time: 0.12042570114135742
+Node 1 counting so-far tps: 77998.411611, latency 0.113074
+1 start to run round 194 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 194 with having 9000 TXs
+this round time: 0.11633634567260742
+Node 1 counting so-far tps: 77989.998059, latency 0.113098
+1 start to run round 195 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 195 with having 9000 TXs
+this round time: 0.11467885971069336
+Node 1 counting so-far tps: 77987.736250, latency 0.113113
+1 start to run round 196 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 196 with having 9000 TXs
+this round time: 0.12032079696655273
+Node 1 counting so-far tps: 77965.722785, latency 0.113157
+1 start to run round 197 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 197 with having 9000 TXs
+this round time: 0.11489677429199219
+Node 1 counting so-far tps: 77962.298394, latency 0.113173
+1 start to run round 198 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 198 with having 9000 TXs
+this round time: 0.11616349220275879
+Node 1 counting so-far tps: 77954.153372, latency 0.113196
+1 start to run round 199 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 199 with having 9000 TXs
+this round time: 0.11739134788513184
+Node 1 counting so-far tps: 77942.034123, latency 0.113225
+1 start to run round 200 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 200 with having 9000 TXs
+this round time: 0.11854052543640137
+Node 1 counting so-far tps: 77926.757306, latency 0.113259
+1 start to run round 201 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 201 with having 9000 TXs
+this round time: 0.11459898948669434
+Node 1 counting so-far tps: 77924.955513, latency 0.113272
+1 start to run round 202 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 202 with having 9000 TXs
+this round time: 0.11539912223815918
+Node 1 counting so-far tps: 77920.653886, latency 0.113289
+1 start to run round 203 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 203 with having 9000 TXs
+this round time: 0.11281108856201172
+Node 1 counting so-far tps: 77925.053942, latency 0.113294
+1 start to run round 204 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 204 with having 9000 TXs
+this round time: 0.11632513999938965
+Node 1 counting so-far tps: 77917.890714, latency 0.113315
+1 start to run round 205 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 205 with having 9000 TXs
+this round time: 0.11745095252990723
+Node 1 counting so-far tps: 77906.742244, latency 0.113342
+1 start to run round 206 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 206 with having 9000 TXs
+this round time: 0.11475133895874023
+Node 1 counting so-far tps: 77904.657560, latency 0.113355
+1 start to run round 207 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 207 with having 9000 TXs
+this round time: 0.11856269836425781
+Node 1 counting so-far tps: 77890.170961, latency 0.113387
+1 start to run round 208 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 208 with having 9000 TXs
+this round time: 0.11147308349609375
+Node 1 counting so-far tps: 77899.001584, latency 0.113384
+1 start to run round 209 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 209 with having 9000 TXs
+this round time: 0.11524295806884766
+Node 1 counting so-far tps: 77895.299099, latency 0.113400
+1 start to run round 210 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 210 with having 9000 TXs
+this round time: 0.11409831047058105
+Node 1 counting so-far tps: 77895.778461, latency 0.113410
+1 start to run round 211 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 211 with having 9000 TXs
+this round time: 0.11945843696594238
+Node 1 counting so-far tps: 77878.503161, latency 0.113445
+1 start to run round 212 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 212 with having 9000 TXs
+this round time: 0.1172642707824707
+Node 1 counting so-far tps: 77868.658207, latency 0.113469
+1 start to run round 213 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 213 with having 9000 TXs
+this round time: 0.11446404457092285
+Node 1 counting so-far tps: 77867.802328, latency 0.113480
+1 start to run round 214 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 214 with having 9000 TXs
+this round time: 0.1127004623413086
+Node 1 counting so-far tps: 77872.407131, latency 0.113483
+1 start to run round 215 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 215 with having 9000 TXs
+this round time: 0.11624908447265625
+Node 1 counting so-far tps: 77865.648380, latency 0.113503
+1 start to run round 216 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 216 with having 9000 TXs
+this round time: 0.11560869216918945
+Node 1 counting so-far tps: 77861.388993, latency 0.113519
+1 start to run round 217 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 217 with having 9000 TXs
+this round time: 0.1163625717163086
+Node 1 counting so-far tps: 77854.562223, latency 0.113538
+1 start to run round 218 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 218 with having 9000 TXs
+this round time: 0.11760258674621582
+Node 1 counting so-far tps: 77843.880608, latency 0.113563
+1 start to run round 219 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 219 with having 9000 TXs
+this round time: 0.1161198616027832
+Node 1 counting so-far tps: 77837.810029, latency 0.113581
+1 start to run round 220 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 220 with having 9000 TXs
+this round time: 0.1162881851196289
+Node 1 counting so-far tps: 77831.415646, latency 0.113600
+1 start to run round 221 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 221 with having 9000 TXs
+this round time: 0.11659502983093262
+Node 1 counting so-far tps: 77823.808316, latency 0.113620
+1 start to run round 222 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 222 with having 9000 TXs
+this round time: 0.11640501022338867
+Node 1 counting so-far tps: 77817.445475, latency 0.113638
+1 start to run round 223 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 223 with having 9000 TXs
+this round time: 0.1162106990814209
+Node 1 counting so-far tps: 77811.333119, latency 0.113656
+1 start to run round 224 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 224 with having 9000 TXs
+this round time: 0.11640262603759766
+Node 1 counting so-far tps: 77804.572758, latency 0.113675
+1 start to run round 225 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 225 with having 9000 TXs
+this round time: 0.11266160011291504
+Node 1 counting so-far tps: 77809.399448, latency 0.113677
+1 start to run round 226 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 226 with having 9000 TXs
+this round time: 0.11616969108581543
+Node 1 counting so-far tps: 77803.673948, latency 0.113694
+1 start to run round 227 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 227 with having 9000 TXs
+this round time: 0.11470794677734375
+Node 1 counting so-far tps: 77802.364065, latency 0.113705
+1 start to run round 228 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 228 with having 9000 TXs
+this round time: 0.10785031318664551
+Node 1 counting so-far tps: 77821.653636, latency 0.113685
+1 start to run round 229 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 229 with having 9000 TXs
+this round time: 0.1181783676147461
+Node 1 counting so-far tps: 77809.637493, latency 0.113711
+1 start to run round 230 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 230 with having 9000 TXs
+this round time: 0.11565947532653809
+Node 1 counting so-far tps: 77805.682401, latency 0.113725
+1 start to run round 231 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 231 with having 9000 TXs
+this round time: 0.1165313720703125
+Node 1 counting so-far tps: 77799.149570, latency 0.113743
+1 start to run round 232 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 232 with having 9000 TXs
+this round time: 0.1154317855834961
+Node 1 counting so-far tps: 77795.959509, latency 0.113756
+1 start to run round 233 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 233 with having 9000 TXs
+this round time: 0.11577391624450684
+Node 1 counting so-far tps: 77791.658363, latency 0.113771
+1 start to run round 234 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 234 with having 9000 TXs
+this round time: 0.10923981666564941
+Node 1 counting so-far tps: 77806.694338, latency 0.113757
+1 start to run round 235 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 235 with having 9000 TXs
+this round time: 0.1166534423828125
+Node 1 counting so-far tps: 77799.998063, latency 0.113775
+1 start to run round 236 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 236 with having 9000 TXs
+this round time: 0.11410307884216309
+Node 1 counting so-far tps: 77800.695050, latency 0.113782
+1 start to run round 237 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 237 with having 9000 TXs
+this round time: 0.11394810676574707
+Node 1 counting so-far tps: 77801.813497, latency 0.113788
+1 start to run round 238 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 238 with having 9000 TXs
+this round time: 0.11668086051940918
+Node 1 counting so-far tps: 77795.098089, latency 0.113806
+1 start to run round 239 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 239 with having 9000 TXs
+this round time: 0.11432981491088867
+Node 1 counting so-far tps: 77795.203226, latency 0.113814
+1 start to run round 240 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 240 with having 9000 TXs
+this round time: 0.12069368362426758
+Node 1 counting so-far tps: 77777.199269, latency 0.113848
+1 start to run round 241 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 241 with having 9000 TXs
+this round time: 0.11532258987426758
+Node 1 counting so-far tps: 77774.386520, latency 0.113860
+1 start to run round 242 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 242 with having 9000 TXs
+this round time: 0.11312079429626465
+Node 1 counting so-far tps: 77777.949899, latency 0.113862
+1 start to run round 243 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 243 with having 9000 TXs
+this round time: 0.11875176429748535
+Node 1 counting so-far tps: 77765.503744, latency 0.113888
+1 start to run round 244 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 244 with having 9000 TXs
+this round time: 0.1145472526550293
+Node 1 counting so-far tps: 77765.029667, latency 0.113896
+1 start to run round 245 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 245 with having 9000 TXs
+this round time: 0.11550617218017578
+Node 1 counting so-far tps: 77761.942005, latency 0.113908
+1 start to run round 246 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 246 with having 9000 TXs
+this round time: 0.11156368255615234
+Node 1 counting so-far tps: 77769.691395, latency 0.113904
+1 start to run round 247 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 247 with having 9000 TXs
+this round time: 0.11777186393737793
+Node 1 counting so-far tps: 77760.324775, latency 0.113925
+1 start to run round 248 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 248 with having 9000 TXs
+this round time: 0.11610794067382812
+Node 1 counting so-far tps: 77755.519715, latency 0.113940
+1 start to run round 249 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 249 with having 9000 TXs
+this round time: 0.11632919311523438
+Node 1 counting so-far tps: 77750.318979, latency 0.113955
+1 start to run round 250 C: [0, 1, 2, 3, 4, 5, 6, 7, 8] N: 9
+Node 1 Delivers ACS Block in Round 250 with having 9000 TXs
+this round time: 0.11630797386169434
+Node 1 counting so-far tps: 77745.219987, latency 0.113969
+node 1 breaks in 28.607257 seconds with total delivered Txs 2224000, latency: 0.113973, tps: 77742.514172
+1 set stop as true

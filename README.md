@@ -1,3 +1,17 @@
+# Note for the test
+
+## How to bootup the test
+
+1. Turritopsis
+   1. run `bash boot-t.sh` with some parameters
+   `bash boot-t.sh 11 9 2 1 1000 250 0 100`
+   2. read the json file (`parse_log/result_turritopsis.json`)
+2. sDumbo
+   1. run `bash boot-s.sh` with the same parameters
+   ``bash boot-t.sh 11 9 2 1 1000 250 0 100``
+   2. read the json file (`parse_log/result_sDumbo.json`)
+
+---
 Proof-of-Concept implementation for Turritopsis. The code is forked from the implementation of Honeybadger-BFT protocol. This codebase also includes PoC implementations for sDumbo.
 
  To run the benchmarks at your machine (with Ubuntu 18.84 LTS), first install all dependencies as follows:
@@ -129,11 +143,10 @@ If you would like to test the code among AWS cloud servers (with Ubuntu 18.84 LT
        i=$(( i+1 ))
      done
 
-
 Here down below is the original README.md of HoneyBadgerBFT
 
-
 # HoneyBadgerBFT
+
 The Honey Badger of BFT Protocols.
 
 <img width=200 src="http://i.imgur.com/wqzdYl4.png"/>
@@ -165,8 +178,8 @@ At the moment, the following three milestones are being focused on:
 
 A roadmap of the project can be found in [ROADMAP.rst](./ROADMAP.rst).
 
-
 ### Contributing
+
 Contributions are welcomed! To quickly get setup for development:
 
 1. Fork the repository and clone your fork. (See the Github Guide
@@ -182,7 +195,7 @@ Contributions are welcomed! To quickly get setup for development:
 4. Run the tests (the first time will take longer as the image will be built):
 
    ```bash
-   $ docker-compose run --rm honeybadger
+   docker-compose run --rm honeybadger
    ```
 
    The tests should pass, and you should also see a small code coverage report
@@ -192,5 +205,6 @@ If the above went all well, you should be setup for developing
 **HoneyBadgerBFT-Python**!
 
 ## License
+
 This is released under the CRAPL academic license. See ./CRAPL-LICENSE.txt
 Other licenses may be issued at the authors' discretion.

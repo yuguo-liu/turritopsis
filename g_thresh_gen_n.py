@@ -8,6 +8,8 @@ from adkr.acss.core.polynomial_pairing import polynomials_over_BN as polynomials
 from utils.core.polynomial_pairing_charm import polynomials_over_BN
 from utils.core.betterpairing import G1 as G11, G2  as G21, ZR as ZR1
 
+import argparse
+
 group = ECGroup(714)
 g = group.hash(123, G)
 
@@ -76,5 +78,23 @@ def trusted_nonthre_key_gen(N=17, f=8):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--N', metavar='N', 
+                        help='Total number of party', type=int)
+    parser.add_argument('--f', metavar='f',
+                        help='Number of Byzantine Fault party', type=int)
+    parser.add_argument('--l', metavar='l',
+                        help='Number of in/out party in each refresh', type=int)
+    args = parser.parse_args()
 
-    trusted_key_gen()
+    N = args.N
+    f = args.f
+    l = args.l
+
+    assert N >= 3*f + 2*l + 1, f'Following relation should be held: \n N >= 3f + 2l + 1\nYour input:\n {N} < 3x{f} + 2x{l} + 1 = {3*f + 2*l + 1}'
+    print(N, f, l)
+    
+    if f'keys-{N}' not in os.listdir(os.getcwd()):
+        os.mkdir(os.getcwd() + f'/keys-{N}')
+        
+    trusted_key_gen(N, f, l)

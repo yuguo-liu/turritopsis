@@ -14,6 +14,8 @@ from gevent.event import Event
 
 from collections import defaultdict
 
+from hashlib import sha256
+
 class MessageTag(Enum):
     VACS_VAL = 'VACS_VAL'            # Queue()
     VACS_VABA = 'VACS_VABA'          # Queue()
@@ -21,6 +23,13 @@ class MessageTag(Enum):
 
 MessageReceiverQueues = namedtuple(
     'MessageReceiverQueues', ('VACS_VAL', 'VACS_VABA'))
+
+
+def save_consensus_result(pid, r, vector):
+    path_to_file = f"consensus_result/consensus-{pid}.cons"
+    if r > 0:
+        with open(path_to_file, "a") as f:
+            f.write(str(r) + "[------]" + sha256(str(vector).encode('utf-8')).hexdigest() + "\n")
 
 
 def vacs_msg_receiving_loop(recv_func, recv_queues):
@@ -147,7 +156,6 @@ def speedmvbacommonsubset(sid, pid, C, r, reconfig, N, f, l, last_pb_proof, PK2s
         for i in C:
             send(i, ('VACS_VAL', v))
 
-
     gevent.spawn(wait_for_input)
 
     values = [None]* N * 2
@@ -179,6 +187,7 @@ def speedmvbacommonsubset(sid, pid, C, r, reconfig, N, f, l, last_pb_proof, PK2s
     vaba_input.put_nowait(tuple(values))
     vector = list(vaba_output.get())
     # print(vector)
+    save_consensus_result(pid, r, vector)
     decide(vector)
 
     c0 = -1
