@@ -113,5 +113,5 @@ cd ..
 9. quick test
 
 ```bash
-./run_local_network_test.sh 10 9 2  1 1000 15
+./run_local_network_test.sh 10 9 2 1 1000 15
 ```
