@@ -12,7 +12,7 @@
    2. read the json file (`parse_log/result_sDumbo.json`)
 
 ## How to install Turritopsis
-see `DEPLOY.md`
+see [`DEPLOY.md`](./DEPLOY.md)
 
 ---
 Proof-of-Concept implementation for Turritopsis. The code is forked from the implementation of Honeybadger-BFT protocol. This codebase also includes PoC implementations for sDumbo.
